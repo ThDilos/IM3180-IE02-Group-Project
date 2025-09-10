@@ -3,9 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class Water : MonoBehaviour
 {
-
     // Runtime vars
-    BoxCollider bc;
+    private BoxCollider bc;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,6 +26,10 @@ public class Water : MonoBehaviour
                 }
                 newVel.y = Mathf.Clamp(newVel.y, 0.0f, 10.0f);
                 collider.gameObject.GetComponent<Rigidbody>().linearVelocity = newVel;
+            }
+            else if (collider.gameObject.CompareTag("Player"))
+            {
+                collider.gameObject.GetComponent<Movement>().Respawn();
             }
         }
     }
