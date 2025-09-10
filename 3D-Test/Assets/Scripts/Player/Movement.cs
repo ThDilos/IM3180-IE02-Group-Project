@@ -124,7 +124,7 @@ public class Movement : MonoBehaviour
             bc = GetComponent<BoxCollider>();
         }
         Bounds b = bc.bounds;
-        Vector3 size = new Vector3(b.size.x * 0.75f, groundCheckDepth);
+        Vector3 size = new Vector3(b.size.x * 0.5f, groundCheckDepth);
         Vector3 center = new Vector3(b.center.x, b.min.y - size.y * 0.5f, b.center.z);
         return Physics.OverlapBox(center, size, Quaternion.identity, groundMask).Length > 0;
     }
@@ -142,19 +142,21 @@ public class Movement : MonoBehaviour
                 runSpeed = bearRunSpeed;
                 jumpForce = bearJumpForce;
                 rb.mass = bearMass;
+                gameObject.layer = 6;
                 break;
             case SwitchCharacter.ActivatedCharacter.GOOSE:
                 walkSpeed = gooseWalkSpeed;
                 runSpeed = gooseRunSpeed;
                 jumpForce = gooseJumpForce;
+                gameObject.layer = 0;
                 break;
             case SwitchCharacter.ActivatedCharacter.CAT:
                 walkSpeed = catWalkSpeed;
                 runSpeed = catRunSpeed;
                 jumpForce = catJumpForce;
+                gameObject.layer = 6;
                 break;
         }
-        Debug.Log(string.Format("Stats updated to {0}", character));
     }
 
     private void ClassMechanicsGoose()

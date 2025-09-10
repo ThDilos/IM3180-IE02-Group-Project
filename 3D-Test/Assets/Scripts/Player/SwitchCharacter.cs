@@ -63,6 +63,7 @@ public class SwitchCharacter : MonoBehaviour
         {
             Switch(index);
         }
+        
     }
 
     private void Switch(int index)

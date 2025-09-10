@@ -13,16 +13,14 @@ public class MainCamera : MonoBehaviour
 
     [Header("Dead Zone")]
     [SerializeField] bool useDeadZone = true;
+    [Tooltip("X for Left-Right, Y for Vertical Displacements (Not Forward-Backward)")]
     [SerializeField] Vector2 deadZoneSize = new Vector2(3.0f, 2.0f);
     [SerializeField] bool drawDeadZone = true;
 
-    [Header("Extras")]
-    [SerializeField] float scrollSensitivity = 10f;
-
     [Header("Distance Clamper")]
-    [Tooltip("Restrict Camera's Distance to Player")]
+    [Tooltip("Restrict Camera's Flat Distance to Player")]
     [SerializeField] bool enableDistanceClamper = true;
-    [Tooltip("x is Min, y is Max")]
+    [Tooltip("Distance is the two Parallel Plane's distance ignoring vertical displacements\nx for Min, y for Max")]
     [SerializeField] Vector2 clampCamDistance = new Vector2(10, 20);
     [Tooltip("Only Used for Cam Clamping. How fast does camera follow?")]
     [SerializeField] float camFollowSpeed = 1f;
@@ -37,18 +35,6 @@ public class MainCamera : MonoBehaviour
         if (target)
         {
             targetRB = target.GetComponent<Rigidbody>();
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.mouseScrollDelta.y > 0)
-        {
-            transform.position += transform.forward * scrollSensitivity * Time.deltaTime;
-        }
-        else if (Input.mouseScrollDelta.y < 0)
-        {
-            transform.position -= transform.forward * scrollSensitivity * Time.deltaTime;
         }
     }
 
@@ -97,7 +83,7 @@ public class MainCamera : MonoBehaviour
             {
                 dy = deltaY - half.y;
             }
-            if (deltaY < -half.y)// yipeeeeeeeeee
+            if (deltaY < -half.y)
             {
                 dy = deltaY + half.y;
             }
@@ -118,7 +104,10 @@ public class MainCamera : MonoBehaviour
         // Clamp Cam Distance To Player
         if (enableDistanceClamper)
         {
-            float toTargetDistance = (transform.position - target.transform.position).magnitude;
+            float toTargetDistance = (
+                new Vector3(transform.position.x, 0, transform.position.z)
+                - new Vector3(target.position.x, 0, target.position.z)).magnitude;
+
             Vector3 toTargetDirection = (transform.position - target.transform.position).normalized;
             toTargetDirection.Scale(new Vector3(1, 0, 1)); // No Y Change
             if (toTargetDistance < clampCamDistance.x)
