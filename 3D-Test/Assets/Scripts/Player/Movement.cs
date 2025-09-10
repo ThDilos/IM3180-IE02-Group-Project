@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements.Experimental;
@@ -39,6 +40,18 @@ public class Movement : MonoBehaviour
     private bool grounded;
     private int facing = 1;
 
+    [Header("Respawn Mechanics 1")]
+    [Tooltip("Coordinates of the Spawn Point")]
+    [SerializeField] private Vector3 spawnPoint;
+
+    [Header("Respawn Mechanics 2")]
+    [Tooltip("Teleport to the previous safe position")]
+    [SerializeField] private bool rewindPosition = false;
+    [Tooltip("How many times the safe positions are updated per second?")]
+    [SerializeField] private int updateFrequency = 5;
+    [Tooltip("How fast (second) the player dies again for this position to be abandoned, and routed to the spawn Point?")]
+    [SerializeField] private float failSafeTimer = 1f; // Abolish rewinding and use spawnPoint if dies too quickly
+
     // Runtime Vars
     private Rigidbody rb;
     private BoxCollider bc;
@@ -58,13 +71,16 @@ public class Movement : MonoBehaviour
 
     private float originalMass;
 
+    private Vector3 safePosition;
+    private float positionUpdateTimer = 0f;
+    private float softlockTimer = 0f;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         bc = GetComponent<BoxCollider>();
         sc = GetComponent<SwitchCharacter>();
         UpdateStats(sc.activatedCharacter);
-
 
         inputActions = sc.inputActions;
         InputActionMap map = inputActions.FindActionMap("Move");
@@ -92,6 +108,19 @@ public class Movement : MonoBehaviour
         {
             ClassMechanicsBear();
         }
+
+        if ( 1 / updateFrequency > positionUpdateTimer)
+        {
+            positionUpdateTimer += Time.deltaTime;
+        }
+        else
+        {
+            positionUpdateTimer = 0;
+            if (grounded && sc.activatedCharacter != SwitchCharacter.ActivatedCharacter.GOOSE)
+                safePosition = transform.position;
+        }
+
+        if (softlockTimer > 0) softlockTimer -= Time.deltaTime;
     }
 
     private void FixedUpdate()
@@ -189,6 +218,26 @@ public class Movement : MonoBehaviour
         float target = (facing == 1) ? 0f : 180f;
         e.y = Mathf.SmoothDampAngle(e.y, target, ref flipVel, 0.05f);
         transform.eulerAngles = e;
+    }
+
+    public void Respawn()
+    {
+        Vector3 targetPos = spawnPoint;
+        if (!rewindPosition || softlockTimer > 0)
+        {
+            if (spawnPoint != null)
+            {
+                targetPos = spawnPoint;
+            }
+        }
+        else if (rewindPosition)
+        {
+            softlockTimer = failSafeTimer;
+            targetPos = safePosition;
+        }
+
+        Debug.Log("Player Respawned to " + targetPos);
+        transform.position = targetPos;
     }
 
     private void OnDrawGizmosSelected()
