@@ -3,15 +3,20 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-[Serializable]
 [RequireComponent(typeof(BoxCollider))]
 public class PressurePlate : Triggerable
 {
     [Header("The Mass Required to Trigger the Pressure Plate")]
     [SerializeField] float triggeringMass = 1.0f;
 
+    [Header("Change Color")]
+    [SerializeField] private Color triggeredColor = Color.red;
+
     private Animator animator;
     private BoxCollider bc;
+    private Renderer render;
+
+    private Color idleColor;
 
     private bool activated = false; // Triggerable Objects Read this
 
@@ -20,6 +25,8 @@ public class PressurePlate : Triggerable
     {
         bc = GetComponent<BoxCollider>();
         animator = GetComponent<Animator>();
+        render = GetComponent<Renderer>();
+        idleColor = render.material.color;
     }
 
     private void Update()
@@ -27,7 +34,11 @@ public class PressurePlate : Triggerable
         animator.SetBool("activated", activated);
         if (activated)
         {
-            Debug.Log("Pressure Plate Activated");
+            render.material.color = triggeredColor;
+        }
+        else
+        {
+            render.material.color = idleColor;
         }
     }
 

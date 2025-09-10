@@ -17,13 +17,21 @@ public class ButtonTrigger : MonoBehaviour, IInteractable
     [Header("Can be toggled, animator changes Boolean instead of Trigger")]
     [SerializeField] private bool isClanker = false;
 
+    [Header("Change Color")]
+    [SerializeField] private Color triggeredColor = Color.red;
+
     // Runtime var
     Animator animator;
     private bool activated = false;
+    private Renderer render;
+    private Color idleColor;
+    private Coroutine buttonCoroutine;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        render = GetComponent<Renderer>();
+        idleColor = render.material.color;
     }
     private void Update()
     {
@@ -35,6 +43,15 @@ public class ButtonTrigger : MonoBehaviour, IInteractable
                 cs.Override(0.2f);
             }
         }
+
+        if (activated)
+        {
+            render.material.color = triggeredColor;
+        }
+        else
+        {
+            render.material.color = idleColor;
+        }
     }
 
     public Transform getTransform()
@@ -44,6 +61,7 @@ public class ButtonTrigger : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        if (buttonCoroutine != null) StopCoroutine(buttonCoroutine);
         if (isClanker)
         {
             activated = !activated;
@@ -55,9 +73,17 @@ public class ButtonTrigger : MonoBehaviour, IInteractable
             {
                 cs.Override(buttonDuration);
             }
-
+            activated = true;
             if (animVar.Length > 0) animator.SetTrigger(animVar);
+            buttonCoroutine = StartCoroutine(ReleaseButton(buttonDuration));
         }
+    }
+
+    IEnumerator ReleaseButton(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        animator.SetBool(animVar, false);
+        activated = false;
     }
 
     public bool Condition()

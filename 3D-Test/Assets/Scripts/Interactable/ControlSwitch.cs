@@ -29,7 +29,7 @@ public class ControlSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (overrideTimer > 0) { overrideTimer -= Time.fixedDeltaTime; }
+        if (overrideTimer > 0) { overrideTimer -= Time.deltaTime; }
         
         activated = (invert) ? !ActivationStatus() : ActivationStatus();
 
