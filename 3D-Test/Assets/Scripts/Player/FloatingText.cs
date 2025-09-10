@@ -26,7 +26,10 @@ public class FloatingText : MonoBehaviour
     {
         if (target != null)
         {
-            transform.rotation = Quaternion.LookRotation(transform.position - mainCam.transform.position); // Look At Camera
+            Vector3 selfPosAdjusted = new Vector3(0, transform.position.y, transform.position.z);
+            Vector3 camPosAdjusted = new Vector3(0, mainCam.position.y, mainCam.position.z);
+
+            transform.rotation = Quaternion.LookRotation(selfPosAdjusted - camPosAdjusted); // Look At Camera
             transform.position = target.position + offset; // Adjust position w.r.t offsets
         }
         float camCloseness = Vector3.Distance(Camera.main.transform.position, transform.position);
