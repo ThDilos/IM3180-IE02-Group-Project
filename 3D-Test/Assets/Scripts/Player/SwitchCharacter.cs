@@ -58,12 +58,13 @@ public class SwitchCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int index = (char1.IsPressed()) ? 0 : (char2.IsPressed()) ? 1 : (char3.IsPressed()) ? 2 : -1;
+        int index = (char1.WasPerformedThisFrame()) ? 0 :
+            (char2.WasPerformedThisFrame()) ? 1 :
+            (char3.WasPerformedThisFrame()) ? 2 : -1;
         if (index >= 0)
         {
             Switch(index);
         }
-        
     }
 
     private void Switch(int index)
