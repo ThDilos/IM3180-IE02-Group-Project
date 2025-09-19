@@ -54,9 +54,9 @@ public class ButtonTrigger : MonoBehaviour, IInteractable
         }
     }
 
-    public Transform getTransform()
+    public Vector3 getPosition()
     {
-        return transform;
+        return transform.position;
     }
 
     public void Interact()

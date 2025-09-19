@@ -1,13 +1,10 @@
-using TMPro;
 using UnityEngine;
 
 public class FloatingText : MonoBehaviour
 {
     Transform mainCam;
     [SerializeField] Transform worldSpaceCanvas;
-    private TMP_Text text;
-    public Transform target { get; set; }
-    [SerializeField] private float hideDistanceModifier = 5.0f; // How long should the invisibilification be?
+    public Vector3 targetPos { get; set; }
 
     // Offset of the text to the object it should be shown upon
     public Vector3 offset = new Vector3(0, 1, 0);
@@ -16,7 +13,6 @@ public class FloatingText : MonoBehaviour
     void Start()
     {
         mainCam = Camera.main.transform;
-        text = GetComponent<TMP_Text>();
         // Set its parent to worldSpaceCanvas automatically
         transform.SetParent(worldSpaceCanvas);
     }
@@ -24,19 +20,13 @@ public class FloatingText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target != null)
+        if (targetPos != null)
         {
             Vector3 selfPosAdjusted = new Vector3(0, transform.position.y, transform.position.z);
             Vector3 camPosAdjusted = new Vector3(0, mainCam.position.y, mainCam.position.z);
 
             transform.rotation = Quaternion.LookRotation(selfPosAdjusted - camPosAdjusted); // Look At Camera
-            transform.position = target.position + offset; // Adjust position w.r.t offsets
-        }
-        float camCloseness = Vector3.Distance(Camera.main.transform.position, transform.position);
-        camCloseness = (camCloseness - 2.0f) / hideDistanceModifier;
-        if (text != null)
-        {
-            text.alpha = Mathf.Clamp(camCloseness, 0.0f, 1.0f);
+            transform.position = targetPos + offset; // Adjust position w.r.t offsets
         }
     }
 }

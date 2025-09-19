@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.UIElements.Experimental;
 
 [RequireComponent(typeof(SwitchCharacter))]
-
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(Animator))]
 public class Movement : MonoBehaviour
 {
     [Header("Character-based Stats")]
@@ -52,10 +54,18 @@ public class Movement : MonoBehaviour
     [Tooltip("How fast (second) the player dies again for this position to be abandoned, and routed to the spawn Point?")]
     [SerializeField] private float failSafeTimer = 1f; // Abolish rewinding and use spawnPoint if dies too quickly
 
+    [Header("Animations - Input the String name of the Animation States Bool")]
+    [Tooltip("Trigger")]
+    [SerializeField] private string jumpAnim = "jump";
+    [SerializeField] private string runAnim = "running";
+    [SerializeField] private string fallAnim = "falling";
+    [SerializeField] private string walkAnim = "walking";
+
     // Runtime Vars
     private Rigidbody rb;
     private BoxCollider bc;
     private SwitchCharacter sc;
+    private Animator animator;
 
     private float walkSpeed;
     private float runSpeed;
@@ -80,6 +90,7 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         bc = GetComponent<BoxCollider>();
         sc = GetComponent<SwitchCharacter>();
+        animator = GetComponent<Animator>();
         UpdateStats(sc.activatedCharacter);
 
         inputActions = sc.inputActions;
@@ -104,10 +115,6 @@ public class Movement : MonoBehaviour
         {
             ClassMechanicsGoose();
         }
-        else if (sc.activatedCharacter == SwitchCharacter.ActivatedCharacter.BEAR)
-        {
-            ClassMechanicsBear();
-        }
 
         if ( 1 / updateFrequency > positionUpdateTimer)
         {
@@ -121,6 +128,8 @@ public class Movement : MonoBehaviour
         }
 
         if (softlockTimer > 0) softlockTimer -= Time.deltaTime;
+
+        //HandleAnimation();
     }
 
     private void FixedUpdate()
@@ -138,6 +147,8 @@ public class Movement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * rb.mass * force, ForceMode.Impulse);
             grounded = false;
+
+            //animator.SetTrigger(jumpAnim);
         }
     }
 
@@ -199,11 +210,6 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void ClassMechanicsBear()
-    {
-        // Empty. To be Added
-    }
-
     void FlipSpriteSmooth(float xVel) // Replacing the flipX part in Update() with FlipSprite()
     {
         if (xVel > 0)
@@ -239,6 +245,22 @@ public class Movement : MonoBehaviour
         Debug.Log("Player Respawned to " + targetPos);
         transform.position = targetPos;
     }
+
+    private void HandleAnimation()
+    {
+        animator.SetBool(fallAnim, !grounded && rb.linearVelocity.y < 0f); // Falling Animation
+        if (run.IsPressed() && moveInput.magnitude > 0)
+        {
+            animator.SetBool(runAnim, true);
+        }
+        else if (moveInput.magnitude > 0) 
+        {
+            animator.SetBool(walkAnim, true);
+        }
+        animator.SetBool(runAnim, run.IsPressed() && moveInput.magnitude > 0);
+        animator.SetBool(runAnim, !run.IsPressed() && moveInput.magnitude > 0);
+    }
+
 
     private void OnDrawGizmosSelected()
     {

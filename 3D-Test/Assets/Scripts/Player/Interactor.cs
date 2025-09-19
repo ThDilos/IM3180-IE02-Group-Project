@@ -1,20 +1,19 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 interface IInteractable
 {
     public void Interact();
     public bool Condition(); // Used to check whether you are in range of triggering (using their w.r.t Trigger Area) and show the floating text
-    public Transform getTransform(); // Used to pinpoint the floating interaction text
-
+    public Vector3 getPosition(); // Used to pinpoint the floating interaction text
     public string AlternativeText(); // Alternative texts to fill in the []?
 }
 
 public class Interactor : MonoBehaviour
 {
-    [SerializeField]
-    private KeyCode interactionKey = KeyCode.E;
+    [SerializeField] private InputActionAsset inputActions;
 
     public Transform interactorSource;
     public float interactionRange; // This range is rather a "Detection" range of interactable object
@@ -22,9 +21,17 @@ public class Interactor : MonoBehaviour
     public TMP_Text floatingText;
     private FloatingText floatingTextScript;
 
+
+    // Runtime Vars
+    private InputAction interactAction;
+    private string key;
+
     private void Start()
     {
         floatingTextScript = floatingText.GetComponent<FloatingText>();
+        InputActionMap map = inputActions.FindActionMap("Utils");
+        interactAction = map.FindAction("Interact");
+        key = interactAction.ToString().Split('/')[interactAction.ToString().Split('/').Length - 1].Replace("]", "").ToUpper(); // Get the key to string
     }
 
     // Update is called once per frame
@@ -38,22 +45,21 @@ public class Interactor : MonoBehaviour
             // Show Interaction Text
             if (collider.gameObject.TryGetComponent(out IInteractable interactObj) && interactObj.Condition())
             {
-                string key = interactionKey.ToString();
                 string altText = interactObj.AlternativeText();
-                if (altText != null) floatingText.text = "[" + key + "]\nTo " + altText;
+                if (altText != null) floatingText.text = "[" + key + "]\n" + altText;
                 else floatingText.text = "[" + key + "]";
-                floatingTextScript.target = interactObj.getTransform();
+                floatingTextScript.targetPos = interactObj.getPosition();
                 break; // Break is used so it won't flicker between multiple interactables (Only check for one)
             }
             else
             {
                 // When no interactable detected, put it back on player body and hide it by setting contents to nothing
                 floatingText.text = "";
-                floatingTextScript.target = transform;
+                floatingTextScript.targetPos = transform.position;
             }
         }
 
-        if (Input.GetKeyDown(interactionKey))
+        if (interactAction.WasPerformedThisFrame())
         {
             // Get items in range
             hitColliders = Physics.OverlapSphere(transform.position, interactionRange);
