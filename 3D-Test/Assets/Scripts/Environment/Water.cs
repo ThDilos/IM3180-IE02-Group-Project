@@ -17,7 +17,7 @@ public class Water : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapBox(transform.position, bc.size);
         foreach (var collider in hitColliders)
         {
-            if (collider.gameObject.layer == 0)
+            if (collider.gameObject.layer == 0 && collider.gameObject.GetComponent<Rigidbody>() != null)
             {
                 Vector3 newVel = collider.gameObject.GetComponent<Rigidbody>().linearVelocity;
                 if (newVel.y < 0)

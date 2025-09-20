@@ -18,7 +18,6 @@ public class ControlSwitch : MonoBehaviour
     // Runtime Vars
     private Animator animator;
     private bool activated;
-    private float overrideTimer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -29,7 +28,6 @@ public class ControlSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (overrideTimer > 0) { overrideTimer -= Time.deltaTime; }
         
         activated = (invert) ? !ActivationStatus() : ActivationStatus();
 
@@ -43,7 +41,7 @@ public class ControlSwitch : MonoBehaviour
     // Return True when all controls Activated()
     private bool ActivationStatus()
     {
-        if (controls.Length == 0 || overrideTimer > 0) { return true; }
+        if (controls.Length == 0) { return true; }
 
         foreach (Triggerable control in controls)
         {
@@ -51,11 +49,5 @@ public class ControlSwitch : MonoBehaviour
         }
 
         return true;
-    }
-
-    // For Buttons that can also trigger this object
-    public void Override(float duration)
-    {
-        overrideTimer = duration;
     }
 }

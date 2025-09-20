@@ -455,7 +455,6 @@ MonoBehaviour:
   - {fileID: 1115727832}
   - {fileID: 1119761681}
   - {fileID: 1027522914}
-  bearColliderHeightMultiplier: 1.8
   inputActions: {fileID: -944628639613478452, guid: e17998b51c5033b4b83ed667400a18fe, type: 3}
 --- !u!4 &199348049
 Transform:
@@ -553,6 +552,7 @@ MonoBehaviour:
     m_Bits: 8
   groundCheckDepth: 0.06
   flipVel: 50
+  directFlip: 1
   spawnPoint: {x: 6, y: 1.5, z: 2}
   rewindPosition: 1
   updateFrequency: 5
@@ -724,6 +724,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &300365559 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1184152460724056048, guid: 7dfa4cf19bcdc144c9d93c8ac02b3241, type: 3}
+  m_PrefabInstance: {fileID: 376589311164723984}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798d0592981b30243b4549b75b5dc84a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &329190684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2615,6 +2626,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controls:
   - {fileID: 855958351}
+  - {fileID: 300365559}
+  - {fileID: 1939093522}
   invert: 0
   animState: character_nearby
 --- !u!1 &976193677
@@ -3911,6 +3924,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757232788}
   m_CullTransparentMesh: 1
+--- !u!114 &1939093522 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3950128325325109454, guid: 6bdcfc391cd34ed41b19370eaf422296, type: 3}
+  m_PrefabInstance: {fileID: 3764809684650732696}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798d0592981b30243b4549b75b5dc84a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1976168915 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 497898, guid: 1b9426746a4365c40b24a81f6ad2daea, type: 3}

@@ -5,10 +5,8 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ButtonTrigger : MonoBehaviour, IInteractable
+public class ButtonTrigger : Triggerable, IInteractable
 {
-    [Header("Which objects to be triggered by this interactible?")]
-    [SerializeField] private ControlSwitch[] triggerObjects; // Door that it's gonna open
     [Header("How long would this interactible remain triggered?")]
     [SerializeField] private float buttonDuration;
     [Header("Animator Variable for Trigger / Boolean")]
@@ -30,27 +28,24 @@ public class ButtonTrigger : MonoBehaviour, IInteractable
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        render = GetComponent<Renderer>();
-        idleColor = render.material.color;
+        if (GetComponent<Renderer>() != null)
+        {
+            render = GetComponent<Renderer>();
+            idleColor = render.material.color;
+        }
     }
     private void Update()
     {
-        if (isClanker && activated)
+        if (render != null)
         {
-            // Infinitely Triggering when activated
-            foreach (ControlSwitch cs in triggerObjects)
+            if (activated)
             {
-                cs.Override(0.2f);
+                render.material.color = triggeredColor;
             }
-        }
-
-        if (activated)
-        {
-            render.material.color = triggeredColor;
-        }
-        else
-        {
-            render.material.color = idleColor;
+            else
+            {
+                render.material.color = idleColor;
+            }
         }
     }
 
@@ -62,6 +57,8 @@ public class ButtonTrigger : MonoBehaviour, IInteractable
     public void Interact()
     {
         if (buttonCoroutine != null) StopCoroutine(buttonCoroutine);
+
+        Debug.Log(gameObject.name + " is Interacted.");
         if (isClanker)
         {
             activated = !activated;
@@ -69,10 +66,6 @@ public class ButtonTrigger : MonoBehaviour, IInteractable
         }
         else
         {
-            foreach (ControlSwitch cs in triggerObjects)
-            {
-                cs.Override(buttonDuration);
-            }
             activated = true;
             if (animVar.Length > 0) animator.SetTrigger(animVar);
             buttonCoroutine = StartCoroutine(ReleaseButton(buttonDuration));
@@ -82,7 +75,7 @@ public class ButtonTrigger : MonoBehaviour, IInteractable
     IEnumerator ReleaseButton(float delay)
     {
         yield return new WaitForSeconds(delay);
-        animator.SetBool(animVar, false);
+        if (animVar.Length > 0) animator.SetBool(animVar, false);
         activated = false;
     }
 
@@ -94,5 +87,10 @@ public class ButtonTrigger : MonoBehaviour, IInteractable
     public string AlternativeText()
     {
         return null;
+    }
+
+    public override bool Activated()
+    {
+        return activated;
     }
 }

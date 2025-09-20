@@ -7,7 +7,6 @@ using UnityEngine.UIElements.Experimental;
 
 [RequireComponent(typeof(SwitchCharacter))]
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Animator))]
 public class Movement : MonoBehaviour
 {
@@ -39,6 +38,9 @@ public class Movement : MonoBehaviour
     [SerializeField] LayerMask groundMask;
     [SerializeField] float groundCheckDepth = 0.06f;
     [SerializeField] float flipVel = 50f;
+
+    [Tooltip("Smooth Flip is Currently Jiorking cuz the Sprite isn't Perfectly Vertical :( Disable to see the effect")]
+    [SerializeField] bool directFlip = true;
     private bool grounded;
     private int facing = 1;
 
@@ -85,11 +87,16 @@ public class Movement : MonoBehaviour
     private float positionUpdateTimer = 0f;
     private float softlockTimer = 0f;
 
+    private Transform[] characterSprites;
+
+    private Vector2 originalRotation; 
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        bc = GetComponent<BoxCollider>();
         sc = GetComponent<SwitchCharacter>();
+
+        Debug.Log(sc.GetAllSpriteTransforms() == null);
         animator = GetComponent<Animator>();
         UpdateStats(sc.activatedCharacter);
 
@@ -99,17 +106,33 @@ public class Movement : MonoBehaviour
         fbAction = map.FindAction("FB");
         jump = map.FindAction("Jump");
         run = map.FindAction("Run");
-
         originalMass = rb.mass;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (characterSprites == null)
+        {
+            if (sc.GetAllSpriteTransforms() != null)
+            {
+                characterSprites = sc.GetAllSpriteTransforms();
+                originalRotation = characterSprites[0].rotation.eulerAngles;
+            }
+        }
+        else
+        {
+            FlipSpriteSmooth(moveInput.x);
+        }
+
+        if (sc.GetActiveBoxCollider() != null)
+        {
+            bc = sc.GetActiveBoxCollider();
+        }
+        else return;
+
         moveInput = new Vector2(lrAction.ReadValue<float>(), fbAction.ReadValue<float>());
         if (jump.WasPerformedThisFrame()) Jump(jumpForce);
-
-        FlipSpriteSmooth(moveInput.x);
 
         if (sc.activatedCharacter == SwitchCharacter.ActivatedCharacter.GOOSE)
         {
@@ -161,7 +184,7 @@ public class Movement : MonoBehaviour
     {
         if (!bc)
         {
-            bc = GetComponent<BoxCollider>();
+            return false;
         }
         Bounds b = bc.bounds;
         Vector3 size = new Vector3(b.size.x * 0.5f, groundCheckDepth);
@@ -212,6 +235,7 @@ public class Movement : MonoBehaviour
 
     void FlipSpriteSmooth(float xVel) // Replacing the flipX part in Update() with FlipSprite()
     {
+
         if (xVel > 0)
         {
             facing = 1;
@@ -220,10 +244,28 @@ public class Movement : MonoBehaviour
         {
             facing = 0;
         }
-        var e = transform.eulerAngles;
-        float target = (facing == 1) ? 0f : 180f;
-        e.y = Mathf.SmoothDampAngle(e.y, target, ref flipVel, 0.05f);
-        transform.eulerAngles = e;
+
+        if (directFlip)
+        {
+            foreach (Transform characterSprite in characterSprites)
+            {
+                SpriteRenderer renderer = characterSprite.GetComponent<SpriteRenderer>();
+                renderer.flipX = facing == 0;
+            }
+            return;
+        }
+
+        var e = originalRotation;
+        float targetX = (facing == 1) ? originalRotation.x : originalRotation.x + 90;
+        float targetY = (facing == 1) ? originalRotation.y : originalRotation.y + 180;
+
+        e.y = Mathf.SmoothDampAngle(e.y, targetY, ref flipVel, 0.005f);
+        e.x = Mathf.SmoothDampAngle(e.x, targetX, ref flipVel, 0.005f);
+
+        foreach (Transform characterSprite in characterSprites)
+        {
+            characterSprite.eulerAngles = e;
+        }
     }
 
     public void Respawn()
@@ -266,7 +308,7 @@ public class Movement : MonoBehaviour
     {
         if (!bc)
         {
-            bc = GetComponent<BoxCollider>();
+            return;
         }
 
         Bounds b = bc.bounds;

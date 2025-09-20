@@ -1,13 +1,12 @@
-using Unity.VisualScripting;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements.Experimental;
 
-[RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
+[RequireComponent(typeof(Rigidbody))]
 
 public class SwitchCharacter : MonoBehaviour
 {
-
     public enum ActivatedCharacter 
     {
         GOOSE,
@@ -15,41 +14,79 @@ public class SwitchCharacter : MonoBehaviour
         CAT
     }
 
+    public class IndividualCharacter : MonoBehaviour
+    {
+        private BoxCollider bc;
+        private GameObject sprite;
+
+        private void Awake()
+        {
+            bc = transform.Find("Collider").GetComponent<BoxCollider>();
+            sprite = transform.Find("Sprite").gameObject;
+        }
+
+        public BoxCollider GetBoxCollider()
+        {
+            return bc;
+        }
+
+        public GameObject GetSpriteObject()
+        {
+            return sprite;
+        }
+        public void SetActive(bool active)
+        {
+            gameObject.SetActive(active);
+        }
+    }
+
     [Tooltip("Which Character the player will start as?")]
     [SerializeField] public ActivatedCharacter activatedCharacter;
-
-    [Header("Put in the characters, STRICTLY in the order of Goose, Bear, Cat")]
-    [SerializeField] GameObject[] characters;
-    [SerializeField] float bearColliderHeightMultiplier = 1.8f;
+    [Header("Put In the Character GameObject")]
+    [Tooltip("Each MUST contain a \"Collider\" with a BoxCollider, and a \"Sprite\" contains the sprite renderer. The Order of them will affect which key switch to which character")]
+    [SerializeField] public GameObject[] characters;
     public InputActionAsset inputActions;
 
     private InputAction char1;
     private InputAction char2;
     private InputAction char3;
 
-    private BoxCollider bc;
-    private Vector3 originalBCSize;
-    private Vector3 originalBCCenter;
+    public Dictionary<ActivatedCharacter, IndividualCharacter> characterMap = new Dictionary<ActivatedCharacter, IndividualCharacter>();
 
     private Movement movementScript;
 
+    private Transform[] allSpriteTransforms;
+
     private void Awake()
     {
-        bc = gameObject.GetComponent<BoxCollider>();
-        originalBCSize = bc.size;
-        originalBCCenter = bc.center;
         InputActionMap map = inputActions.FindActionMap("SwitchCharacter");
         char1 = map.FindAction("Char1");
         char2 = map.FindAction("Char2");
         char3 = map.FindAction("Char3");
 
+        allSpriteTransforms = new Transform[characters.Length];
+
+        int index = 0;
         foreach (GameObject character in characters)
         {
-            if (!character.name.ToLower().Equals(activatedCharacter.ToString().ToLower()))
-            {
-                character.SetActive(false);
-            }
+            IndividualCharacter newCharacter = character.AddComponent<IndividualCharacter>();
+
+            ActivatedCharacter tempEnum;
+
+            if (character.name == "Bear") tempEnum = ActivatedCharacter.BEAR;
+            else if (character.name == "Goose") tempEnum = ActivatedCharacter.GOOSE;
+            else tempEnum = ActivatedCharacter.CAT;
+
+            allSpriteTransforms[index] = newCharacter.GetSpriteObject().transform;
+            characterMap.Add(tempEnum, newCharacter);
+            index++;
         }
+        foreach (GameObject character in characters)
+        {
+            character.SetActive(false);
+        }
+
+        characterMap[activatedCharacter].SetActive(true);
 
         movementScript = GetComponent<Movement>();
         movementScript.UpdateStats(activatedCharacter);
@@ -76,20 +113,19 @@ public class SwitchCharacter : MonoBehaviour
         if (index >= 0)
         {
             characters[index].SetActive(true);
-            activatedCharacter = (SwitchCharacter.ActivatedCharacter)System.Enum.Parse(typeof(ActivatedCharacter), characters[index].name.ToUpper());
+            activatedCharacter = (ActivatedCharacter)System.Enum.Parse(typeof(ActivatedCharacter), characters[index].name.ToUpper());
             Debug.Log(string.Format("Switched to {0}", activatedCharacter));
             movementScript.UpdateStats(activatedCharacter);
         }
+    }
 
-        switch (index) {
-            case 1:
-                bc.size = new Vector3(bc.size.x, originalBCSize.y * bearColliderHeightMultiplier, bc.size.z);
-                bc.center = new Vector3(originalBCCenter.x, originalBCCenter.y + (originalBCSize.y * 2 * (bearColliderHeightMultiplier - 1) / 4 - 0.08f), originalBCCenter.z);
-                break;
-            default:
-                bc.size = originalBCSize;
-                bc.center = originalBCCenter;
-                break;
-        }
+    public BoxCollider GetActiveBoxCollider()
+    {
+        return characterMap[activatedCharacter].GetBoxCollider();
+    }
+
+    public Transform[] GetAllSpriteTransforms()
+    {
+        return allSpriteTransforms;
     }
 }
