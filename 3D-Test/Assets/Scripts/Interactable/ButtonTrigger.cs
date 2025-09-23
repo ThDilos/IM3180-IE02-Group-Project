@@ -12,6 +12,8 @@ public class ButtonTrigger : Triggerable, IInteractable
     [Header("Animator Variable for Trigger / Boolean")]
     [SerializeField] string animVar = "";
 
+    [Header("If not set, collider is from the same object")]
+
     [Header("Can be toggled, animator changes Boolean instead of Trigger")]
     [SerializeField] private bool isClanker = false;
 
