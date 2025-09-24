@@ -6,6 +6,9 @@ public class TriggerDialog : MonoBehaviour, IInteractable
     [Tooltip("Currently only support showing 1 icon")]
     public Texture icon; // The Icon to show
     public List<string> lines; // The Line to display
+
+    public bool destroyAfterInteraction = false;
+
     [Header("Progressive Lines - Repeat the following lines when 1st lines is already triggered")]
     [Tooltip("Whether the 1st sequence of lines only show once, and the next sequence of lines are repeated afterwards.")] public bool progressiveLine;
     public List<string> repeatedLines; // The Lines that are repeated
@@ -65,6 +68,10 @@ public class TriggerDialog : MonoBehaviour, IInteractable
         else dialogScript.SetLines(repeatedLines, icon);
 
         alreadyInteracted = progressiveLine;
+        if (destroyAfterInteraction)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void ResetDialog()
