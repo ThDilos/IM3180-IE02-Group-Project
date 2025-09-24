@@ -84,7 +84,7 @@ public class DialogPopUp : MonoBehaviour
         dialogScript.SetLines(temp);
     }
 
-    void PopUpDialog(CommonDialog option)
+    public void PopUpDialog(CommonDialog option)
     {
         SwitchCharacter sc = transform.GetComponent<SwitchCharacter>();
         switch (option)

@@ -83,20 +83,25 @@ public class Movement : MonoBehaviour
 
     private float originalMass;
 
+    private float respawnSafeTime = 1.0f; // Only respawnable again after 1s of respawning
+    private float timeSinceRespawn = 0.0f;
+
     private Vector3 safePosition;
     private float positionUpdateTimer = 0f;
     private float softlockTimer = 0f;
 
     private Transform[] characterSprites;
 
-    private Vector2 originalRotation; 
+    private Vector2 originalRotation;
+
+    private DialogPopUp dpu;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         sc = GetComponent<SwitchCharacter>();
+        dpu = GetComponent<DialogPopUp>();
 
-        Debug.Log(sc.GetAllSpriteTransforms() == null);
         animator = GetComponent<Animator>();
         UpdateStats(sc.activatedCharacter);
 
@@ -151,6 +156,7 @@ public class Movement : MonoBehaviour
         }
 
         if (softlockTimer > 0) softlockTimer -= Time.deltaTime;
+        if (timeSinceRespawn > 0) timeSinceRespawn -= Time.deltaTime;
 
         //HandleAnimation();
     }
@@ -270,6 +276,10 @@ public class Movement : MonoBehaviour
 
     public void Respawn()
     {
+        if (timeSinceRespawn > 0) return;
+
+        dpu.PopUpDialog(DialogPopUp.CommonDialog.WaterWarning);
+        timeSinceRespawn = respawnSafeTime;
         Vector3 targetPos = spawnPoint;
         if (!rewindPosition || softlockTimer > 0)
         {
