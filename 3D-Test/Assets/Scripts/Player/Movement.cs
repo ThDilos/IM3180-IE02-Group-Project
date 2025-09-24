@@ -193,7 +193,7 @@ public class Movement : MonoBehaviour
             return false;
         }
         Bounds b = bc.bounds;
-        Vector3 size = new Vector3(b.size.x * 0.5f, groundCheckDepth);
+        Vector3 size = new Vector3(b.size.x * 0.25f, groundCheckDepth);
         Vector3 center = new Vector3(b.center.x, b.min.y - size.y * 0.5f, b.center.z);
         return Physics.OverlapBox(center, size, Quaternion.identity, groundMask).Length > 0;
     }
