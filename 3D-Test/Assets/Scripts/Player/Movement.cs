@@ -217,12 +217,14 @@ public class Movement : MonoBehaviour
                 walkSpeed = gooseWalkSpeed;
                 runSpeed = gooseRunSpeed;
                 jumpForce = gooseJumpForce;
+                rb.mass = 1;
                 gameObject.layer = 0;
                 break;
             case SwitchCharacter.ActivatedCharacter.CAT:
                 walkSpeed = catWalkSpeed;
                 runSpeed = catRunSpeed;
                 jumpForce = catJumpForce;
+                rb.mass = 1;
                 gameObject.layer = 6;
                 break;
         }
