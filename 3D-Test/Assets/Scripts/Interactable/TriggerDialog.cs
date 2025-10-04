@@ -9,6 +9,9 @@ public class TriggerDialog : MonoBehaviour, IInteractable
 
     public bool destroyAfterInteraction = false;
 
+    [Header("Only who can pickup")]
+    [SerializeField] private SwitchCharacter.ActivatedCharacter characterLimit;
+
     [Header("Progressive Lines - Repeat the following lines when 1st lines is already triggered")]
     [Tooltip("Whether the 1st sequence of lines only show once, and the next sequence of lines are repeated afterwards.")] public bool progressiveLine;
     public List<string> repeatedLines; // The Lines that are repeated
@@ -87,7 +90,8 @@ public class TriggerDialog : MonoBehaviour, IInteractable
 
     public bool Condition()
     {
-        return !dialogBox.activeSelf;
+            return !dialogBox.activeSelf &&
+            GameObject.Find("Player").GetComponent<SwitchCharacter>().activatedCharacter == characterLimit;
     }
 
     private void OverflowDetection()

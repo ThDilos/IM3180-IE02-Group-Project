@@ -143,8 +143,16 @@ public class Movement : MonoBehaviour
         {
             ClassMechanicsGoose();
         }
+        else if (sc.activatedCharacter == SwitchCharacter.ActivatedCharacter.BEAR)
+        {
+            ClassMechanicsBear();
+        }
+        else if (sc.activatedCharacter == SwitchCharacter.ActivatedCharacter.CAT)
+        {
+            ClassMechanicsCat();
+        }
 
-        if ( 1 / updateFrequency > positionUpdateTimer)
+        if (1 / updateFrequency > positionUpdateTimer)
         {
             positionUpdateTimer += Time.deltaTime;
         }
@@ -158,7 +166,7 @@ public class Movement : MonoBehaviour
         if (softlockTimer > 0) softlockTimer -= Time.deltaTime;
         if (timeSinceRespawn > 0) timeSinceRespawn -= Time.deltaTime;
 
-        //HandleAnimation();
+        HandleAnimation();
     }
 
     private void FixedUpdate()
@@ -176,8 +184,10 @@ public class Movement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * rb.mass * force, ForceMode.Impulse);
             grounded = false;
-
-            //animator.SetTrigger(jumpAnim);
+            if (sc.activatedCharacter == SwitchCharacter.ActivatedCharacter.CAT)
+            {
+                animator.SetBool("UsingAbility", true);
+            }
         }
     }
 
@@ -193,13 +203,14 @@ public class Movement : MonoBehaviour
             return false;
         }
         Bounds b = bc.bounds;
-        Vector3 size = new Vector3(b.size.x * 0.5f, groundCheckDepth);
+        Vector3 size = new Vector3(b.size.x * 0.25f, groundCheckDepth);
         Vector3 center = new Vector3(b.center.x, b.min.y - size.y * 0.5f, b.center.z);
         return Physics.OverlapBox(center, size, Quaternion.identity, groundMask).Length > 0;
     }
 
     public void UpdateStats(SwitchCharacter.ActivatedCharacter character)
     {
+        animator.SetBool("UsingAbility", false);
         if (rb != null)
         {
             rb.mass = originalMass;
@@ -230,12 +241,25 @@ public class Movement : MonoBehaviour
 
     private void ClassMechanicsGoose()
     {
-        if (jump.IsPressed() && rb.linearVelocity.y < 0)
+        bool gliding = (jump.IsPressed() && rb.linearVelocity.y < 0);
+        animator.SetBool("UsingAbility", gliding);
+        if (gliding)
         {
             rb.linearVelocity = new Vector3(
                 rb.linearVelocity.x,
                 Mathf.Clamp(rb.linearVelocity.y, -Mathf.Abs(glidingMaxVelY), Mathf.Abs(glidingMaxVelY)),
                 rb.linearVelocity.z);
+        }
+    }
+
+    private void ClassMechanicsBear() { }
+
+    private void ClassMechanicsCat()
+    {
+        if (grounded)
+        {
+            Debug.Log("Reset");
+            animator.SetBool("UsingAbility", false);
         }
     }
 
@@ -300,17 +324,10 @@ public class Movement : MonoBehaviour
 
     private void HandleAnimation()
     {
+        animator.SetFloat("Velocity", rb.linearVelocity.magnitude);
+        animator.SetFloat("FrontBack", rb.linearVelocity.z);
         animator.SetBool(fallAnim, !grounded && rb.linearVelocity.y < 0f); // Falling Animation
-        if (run.IsPressed() && moveInput.magnitude > 0)
-        {
-            animator.SetBool(runAnim, true);
-        }
-        else if (moveInput.magnitude > 0) 
-        {
-            animator.SetBool(walkAnim, true);
-        }
-        animator.SetBool(runAnim, run.IsPressed() && moveInput.magnitude > 0);
-        animator.SetBool(runAnim, !run.IsPressed() && moveInput.magnitude > 0);
+
     }
 
 
@@ -322,7 +339,7 @@ public class Movement : MonoBehaviour
         }
 
         Bounds b = bc.bounds;
-        Vector3 size = new Vector3(b.size.x * 0.75f, groundCheckDepth, b.size.z);
+        Vector3 size = new Vector3(b.size.x * 0.25f, groundCheckDepth, b.size.z);
         Vector3 center = new Vector3(b.center.x, b.min.y - size.y * 0.5f, b.center.z);
 
         Gizmos.color = Color.yellow;
