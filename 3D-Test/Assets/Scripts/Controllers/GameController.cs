@@ -14,12 +14,14 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject debugCanvas;
     private TMP_Text debugLogs;
 
+    [SerializeField] public bool gotLabReport = false;
+    [SerializeField] private GameObject labReport;
+
     // Start is called before the first frame update
     private void Start()
     {
         // Limit Framerate
-        try { frameRate = PlayerPrefs.GetInt("FPS"); } catch { }
-        ;
+        try { frameRate = PlayerPrefs.GetInt("FPS"); } catch { };
         QualitySettings.vSyncCount = 0; // Set vSyncCount to 0 so that using .targetFrameRate is enabled.
         Application.targetFrameRate = frameRate; // Default fps is set to 60, so that your GPU won't scream eve
         if (debugCanvas == null)
@@ -101,5 +103,20 @@ public class GameController : MonoBehaviour
             myLogQueue.Dequeue();
         }
         if (debugLogs != null) debugLogs.text = myLog;
+    }
+
+    // Only called once in tutorial room
+    public void ObtainLabReport()
+    {
+        gotLabReport = true;
+        
+        if (labReport != null)
+        {
+            labReport.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("Put Lab Report into the GameController Component!");
+        }
     }
 }

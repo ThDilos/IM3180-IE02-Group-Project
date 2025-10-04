@@ -326,8 +326,7 @@ public class Movement : MonoBehaviour
     {
         animator.SetFloat("Velocity", rb.linearVelocity.magnitude);
         animator.SetFloat("FrontBack", rb.linearVelocity.z);
-        animator.SetBool(fallAnim, !grounded && rb.linearVelocity.y < 0f); // Falling Animation
-
+        //animator.SetBool(fallAnim, !grounded && rb.linearVelocity.y < 0f); // Falling Animation
     }
 
 
