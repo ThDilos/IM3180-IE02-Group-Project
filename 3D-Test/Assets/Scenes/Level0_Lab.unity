@@ -38406,7 +38406,7 @@ MonoBehaviour:
   controls:
   - {fileID: 1978489758}
   invert: 0
-  animState: 
+  animState: activated
 --- !u!95 &1859543373
 Animator:
   serializedVersion: 7
