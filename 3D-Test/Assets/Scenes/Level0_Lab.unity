@@ -3393,21 +3393,69 @@ PrefabInstance:
       propertyPath: m_BlockingMask.m_Bits
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 2046084117656263877, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.10522461
+      objectReference: {fileID: 0}
     - target: {fileID: 2656978608928335964, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195816707513885214, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -21.699951
+      objectReference: {fileID: 0}
+    - target: {fileID: 3255539766366717256, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -21.699951
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307992249621531850, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.111328125
+      objectReference: {fileID: 0}
+    - target: {fileID: 5167699090668775281, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -21.699951
+      objectReference: {fileID: 0}
+    - target: {fileID: 5276290198679856547, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -23.319946
+      objectReference: {fileID: 0}
+    - target: {fileID: 5337173746660487831, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -21.699951
       objectReference: {fileID: 0}
     - target: {fileID: 6629477928618945602, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
       propertyPath: inputActions
       value: 
       objectReference: {fileID: -944628639613478452, guid: e17998b51c5033b4b83ed667400a18fe, type: 3}
+    - target: {fileID: 6629477928618945602, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: backgroundPanel
+      value: 
+      objectReference: {fileID: 1101090850}
     - target: {fileID: 7134984592993282435, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
       propertyPath: m_Name
       value: Notebook
       objectReference: {fileID: 0}
+    - target: {fileID: 7349769218221246008, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -23.319946
+      objectReference: {fileID: 0}
+    - target: {fileID: 7349769218221246008, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -92.29999
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554004181755593045, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -23.319946
+      objectReference: {fileID: 0}
     - target: {fileID: 7561593744827589150, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7638664840090062664, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -23.319946
       objectReference: {fileID: 0}
     - target: {fileID: 7689725680380460995, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
       propertyPath: m_Pivot.x
@@ -3488,6 +3536,14 @@ PrefabInstance:
     - target: {fileID: 7689725680380460995, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8165111419370187615, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -23.319946
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773712105737134220, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -23.319946
       objectReference: {fileID: 0}
     - target: {fileID: 8959126723798654807, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
       propertyPath: m_IsActive
@@ -4128,10 +4184,6 @@ MonoBehaviour:
   rewindPosition: 0
   updateFrequency: 5
   failSafeTimer: 1
-  jumpAnim: jump
-  runAnim: running
-  fallAnim: falling
-  walkAnim: walking
 --- !u!95 &315017508
 Animator:
   serializedVersion: 7
@@ -4171,7 +4223,6 @@ MonoBehaviour:
   - {fileID: 962854453}
   - {fileID: 1473338597}
   - {fileID: 1052121861}
-  inputActions: {fileID: -944628639613478452, guid: e17998b51c5033b4b83ed667400a18fe, type: 3}
 --- !u!54 &315017511
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4180,7 +4231,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315017505}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.0000001
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -9268,6 +9319,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &771712647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 771712649}
+  - component: {fileID: 771712648}
+  m_Layer: 0
+  m_Name: Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &771712648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771712647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e481ca8d6bc39542a0c3cfec00131e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  lines:
+  - "The procedure was a success. Your mutations have stabilized\u2026 "
+  - Begin with basic movement. Use the W, A, S, D keys.
+  - Each of you will have distinct abilities. To shift between yourselves, press
+    1, 2, or 3. Press the space bar to activate your ability.
+  - Additional data is logged in the lab report. Consult them for clarification,
+    if needed.
+  - You three will need time to adapt so we have prepared simulations to accelerate
+    the process. Your first trial begins now. The chamber door on the right is locked.
+    A switch lies within reach, if you work together to combine your abilities effectively.
+    Fail, and the system will record it as weakness.
+  selfWarpLength: 70
+--- !u!4 &771712649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771712647}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &801450160
 GameObject:
   m_ObjectHideFlags: 0
@@ -12103,7 +12211,7 @@ MonoBehaviour:
   lines:
   - (You Picked up a knife)
   destroyAfterInteraction: 1
-  charLimitEnabled: 0
+  charLimitEnabled: 1
   characterLimit: 0
   progressiveLine: 0
   repeatedLines: []
@@ -14632,6 +14740,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1101090850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5195283464653215487, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+  m_PrefabInstance: {fileID: 250109654}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1103201922
 GameObject:
   m_ObjectHideFlags: 0
@@ -15443,7 +15556,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1162639434
 RectTransform:
@@ -20079,6 +20192,10 @@ PrefabInstance:
       propertyPath: gotLabReport
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2914947966897703091, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
+      propertyPath: inputActions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: e17998b51c5033b4b83ed667400a18fe, type: 3}
     - target: {fileID: 4306376830965113119, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
       propertyPath: m_Name
       value: Controllers
@@ -24772,3 +24889,4 @@ SceneRoots:
   - {fileID: 1162639434}
   - {fileID: 1705009273}
   - {fileID: 1211105520}
+  - {fileID: 771712649}

@@ -56,13 +56,6 @@ public class Movement : MonoBehaviour
     [Tooltip("How fast (second) the player dies again for this position to be abandoned, and routed to the spawn Point?")]
     [SerializeField] private float failSafeTimer = 1f; // Abolish rewinding and use spawnPoint if dies too quickly
 
-    [Header("Animations - Input the String name of the Animation States Bool")]
-    [Tooltip("Trigger")]
-    [SerializeField] private string jumpAnim = "jump";
-    [SerializeField] private string runAnim = "running";
-    [SerializeField] private string fallAnim = "falling";
-    [SerializeField] private string walkAnim = "walking";
-
     // Runtime Vars
     private Rigidbody rb;
     private BoxCollider bc;
@@ -96,7 +89,7 @@ public class Movement : MonoBehaviour
 
     private DialogPopUp dpu;
 
-    private void Awake()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
         sc = GetComponent<SwitchCharacter>();
@@ -105,13 +98,13 @@ public class Movement : MonoBehaviour
         animator = GetComponent<Animator>();
         UpdateStats(sc.activatedCharacter);
 
-        inputActions = sc.inputActions;
+        inputActions = GameController.Instance.inputActions;
         InputActionMap map = inputActions.FindActionMap("Move");
         lrAction = map.FindAction("LR");
         fbAction = map.FindAction("FB");
         jump = map.FindAction("Jump");
         run = map.FindAction("Run");
-        originalMass = rb.mass;
+        originalMass = 0;
     }
 
     // Update is called once per frame
@@ -258,7 +251,6 @@ public class Movement : MonoBehaviour
     {
         if (grounded)
         {
-            Debug.Log("Reset");
             animator.SetBool("UsingAbility", false);
         }
     }

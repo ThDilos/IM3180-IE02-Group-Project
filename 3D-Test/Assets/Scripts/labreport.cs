@@ -6,9 +6,7 @@ using UnityEngine.UI;
 
 public class labreport : MonoBehaviour
 {
-
-    [SerializeField] private InputActionAsset inputActions;
-
+    public GameObject backgroundPanel;
     public GameObject abstractPanel;
     public GameObject charPanel;
     public GameObject lorePanel;
@@ -30,12 +28,13 @@ public class labreport : MonoBehaviour
 
     void Start()
     {
-        if (!GameObject.Find("Controllers").GetComponent<GameController>().gotLabReport)
+        if (!GameController.Instance.gotLabReport)
         {
             gameObject.SetActive(false);
         }
 
         // Ensure the pause panel is not active at the start
+        backgroundPanel.SetActive(false);
         abstractPanel.SetActive(false);
         charPanel.SetActive(false);
         lorePanel.SetActive(false);
@@ -47,7 +46,7 @@ public class labreport : MonoBehaviour
         newButton.onClick.AddListener(ComingSoon);
 
         openreportButton.onClick.AddListener(openReport);
-        InputActionMap map = inputActions.FindActionMap("Utils");
+        InputActionMap map = GameController.Instance.inputActions.FindActionMap("Utils");
         labReportAction = map.FindAction("LabReport");
     }
 
@@ -84,6 +83,8 @@ public class labreport : MonoBehaviour
         charPanel.SetActive(false);
         lorePanel.SetActive(false);
         newPanel.SetActive(false);
+        GameController.Instance.PauseGame();
+        backgroundPanel.SetActive(true);
     }
     public void Characters()
     {
@@ -121,5 +122,7 @@ public class labreport : MonoBehaviour
         lorePanel.SetActive(false);
         newPanel.SetActive(false);
         // mainPanel.SetActive(true); What's the mainPanel for?
+        GameController.Instance.ResumeGame();
+        backgroundPanel.SetActive(false);
     }
 }
