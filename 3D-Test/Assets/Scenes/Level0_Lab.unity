@@ -9348,7 +9348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e481ca8d6bc39542a0c3cfec00131e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: 07bb54f481b48954eb6f16a0746e3e1b, type: 3}
   lines:
   - "The procedure was a success. Your mutations have stabilized\u2026 "
   - Begin with basic movement. Use the W, A, S, D keys.

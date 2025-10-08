@@ -4,7 +4,7 @@ using UnityEngine;
 public class Tutorial : MonoBehaviour
 {
     [Tooltip("Currently only support showing 1 icon")]
-    public Texture icon; // The Icon to show
+    public Texture icon = null; // The Icon to show
     public List<string> lines; // The Line to display
 
     [Header("Overflow Action")]
@@ -31,7 +31,7 @@ public class Tutorial : MonoBehaviour
         dialogBox.SetActive(true);
 
         dialogScript.iconImage.gameObject.SetActive(true);
-        dialogScript.SetLines(lines);
+        dialogScript.SetLines(lines, icon);
     }
 
     private void OverflowDetection()
