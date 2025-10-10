@@ -9,18 +9,20 @@ public class GameController : MonoBehaviour
     // Always Accessible as an Instance
     public static GameController Instance { get; private set; }
 
-    [Header("Frame rate Control")]
+    [Header("Frame rate Control (Changes require restarting the game)")]
     [Tooltip("How many physics calculations per second?\nWarning: Will change A LOT stuff")]
     [SerializeField] private int updatePerSecond = 20;
     [Tooltip("Render Framerate, does not affect gameplay.\nThe conventional 'FPS'")]
     [SerializeField] private int frameRate = 60;
 
+    [Header("Debugger in Application")]
     [SerializeField] private KeyCode debugActivate = KeyCode.O;
     private bool debugMode = false;
 
     [SerializeField] private GameObject debugCanvas;
     private TMP_Text debugLogs;
 
+    [Header("Lab Report Object for Unlocking")]
     [SerializeField] public bool gotLabReport = false;
     [SerializeField] private GameObject labReport;
 
@@ -43,23 +45,17 @@ public class GameController : MonoBehaviour
         // Assign and make persistent throughout scenes
         Instance = this;
         DontDestroyOnLoad(gameObject);
-    }
 
-    // Start is called before the first frame update
-    private void Start()
-    {
         // Limit UpdateRate [Runtime]
-        Time.fixedDeltaTime = 1 / updatePerSecond;
+        Time.fixedDeltaTime = 1f / updatePerSecond;
         timeScale = Time.timeScale;
+        Debug.Log("Fixed Delta Time Changed to " + 1f / updatePerSecond + " = " + Time.fixedDeltaTime);
 
         // Limit Framerate [Render Pipeline]
+        PlayerPrefs.SetInt("FPS", frameRate); // temp, to be deleted afterwards.
         try { frameRate = PlayerPrefs.GetInt("FPS"); } catch { };
         QualitySettings.vSyncCount = 0; // Set vSyncCount to 0 so that using .targetFrameRate is enabled.
         Application.targetFrameRate = frameRate; // Default fps is set to 60, so that your GPU won't scream eve
-
-        // Try Find Debug Canvas
-        if (debugCanvas == null)
-            debugCanvas = GameObject.Find("DebugModeCanvas");
     }
 
     public void Respawn()
