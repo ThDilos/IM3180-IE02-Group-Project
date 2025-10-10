@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class labreport : MonoBehaviour
 {
-    public GameObject backgroundPanel;
     public GameObject abstractPanel;
     public GameObject charPanel;
     public GameObject lorePanel;
@@ -18,6 +17,7 @@ public class labreport : MonoBehaviour
     public Button loreButton;
     public Button newButton;
 
+    public AudioSource audioSource;
     public AudioClip flipPage;
     public AudioClip closeBoard;
 
@@ -34,7 +34,6 @@ public class labreport : MonoBehaviour
         }
 
         // Ensure the pause panel is not active at the start
-        backgroundPanel.SetActive(false);
         abstractPanel.SetActive(false);
         charPanel.SetActive(false);
         lorePanel.SetActive(false);
@@ -78,18 +77,17 @@ public class labreport : MonoBehaviour
     public void Abstract()
     {
         panelOpen = true;
-        AudioSource.PlayClipAtPoint(flipPage, transform.position, 1f);
+        audioSource.PlayOneShot(flipPage);
         abstractPanel.SetActive(true);  // Show the panel
         charPanel.SetActive(false);
         lorePanel.SetActive(false);
         newPanel.SetActive(false);
         GameController.Instance.PauseGame();
-        backgroundPanel.SetActive(true);
     }
     public void Characters()
     {
         panelOpen = true;
-        AudioSource.PlayClipAtPoint(flipPage, transform.position, 1f);
+        audioSource.PlayOneShot(flipPage);
         abstractPanel.SetActive(false);
         charPanel.SetActive(true);
         lorePanel.SetActive(false);
@@ -98,7 +96,7 @@ public class labreport : MonoBehaviour
     public void Lore()
     {
         panelOpen = true;
-        AudioSource.PlayClipAtPoint(flipPage, transform.position, 1f);
+        audioSource.PlayOneShot(flipPage);
         abstractPanel.SetActive(false);
         charPanel.SetActive(false);
         lorePanel.SetActive(true);
@@ -107,7 +105,7 @@ public class labreport : MonoBehaviour
     public void ComingSoon()
     {
         panelOpen = true;
-        AudioSource.PlayClipAtPoint(flipPage, transform.position, 1f);
+        audioSource.PlayOneShot(flipPage);
         abstractPanel.SetActive(false);
         charPanel.SetActive(false);
         lorePanel.SetActive(false);
@@ -116,13 +114,11 @@ public class labreport : MonoBehaviour
     public void ResumeGame()
     {
         panelOpen = false;
-        AudioSource.PlayClipAtPoint(closeBoard, transform.position, 1f);
+        audioSource.PlayOneShot(closeBoard);
         abstractPanel.SetActive(false);  // Hide the panel
         charPanel.SetActive(false);
         lorePanel.SetActive(false);
         newPanel.SetActive(false);
-        // mainPanel.SetActive(true); What's the mainPanel for?
         GameController.Instance.ResumeGame();
-        backgroundPanel.SetActive(false);
     }
 }
