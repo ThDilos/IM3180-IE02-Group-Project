@@ -184,7 +184,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private bool CanJump()
+    public bool CanJump()
     {
         return IsGrounded();
     }
@@ -232,7 +232,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void ClassMechanicsGoose()
+    public bool ClassMechanicsGoose()
     {
         bool gliding = (jump.IsPressed() && rb.linearVelocity.y < 0);
         animator.SetBool("UsingAbility", gliding);
@@ -243,6 +243,7 @@ public class Movement : MonoBehaviour
                 Mathf.Clamp(rb.linearVelocity.y, -Mathf.Abs(glidingMaxVelY), Mathf.Abs(glidingMaxVelY)),
                 rb.linearVelocity.z);
         }
+        return gliding;
     }
 
     private void ClassMechanicsBear() { }

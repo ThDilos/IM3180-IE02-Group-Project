@@ -17,6 +17,8 @@ public class Water : MonoBehaviour
     private SwitchCharacter sc;
     private Movement movement;
 
+    public bool canFloat;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,7 +36,7 @@ public class Water : MonoBehaviour
         foreach (var collider in hitColliders)
         {
             Rigidbody rb = null;
-            bool canFloat = false;
+            canFloat = false;
 
             if (collider.CompareTag("Player"))
             {
