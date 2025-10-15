@@ -22375,6 +22375,9 @@ MonoBehaviour:
   - {fileID: 1978489758}
   invert: 0
   animState: activated
+  buttonTriggerScript: {fileID: 1978489758}
+  audioSource: {fileID: 1828791151}
+  doorOpen: {fileID: 8300000, guid: 04b4f5256890ecb40a76d9b667440288, type: 3}
 --- !u!95 &1859543373
 Animator:
   serializedVersion: 7
@@ -22997,6 +23000,7 @@ MonoBehaviour:
   animVar: activated
   isClanker: 1
   triggeredColor: {r: 1, g: 0, b: 0, a: 1}
+  interacted: 0
 --- !u!65 &1978489759
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24738,6 +24742,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 330454206}
+  audioSource: {fileID: 1828791151}
+  closeBook: {fileID: 8300000, guid: b85d4eb25f7ae7a4fb2de8f4f8c2c800, type: 3}
 --- !u!1 &1873641665590449465
 GameObject:
   m_ObjectHideFlags: 0

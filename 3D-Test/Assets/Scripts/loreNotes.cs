@@ -12,7 +12,8 @@ public class loreNotes : MonoBehaviour
     public Button lore2Button;
     public Button lore3Button;
 
-    // Update is called once per frame
+    [SerializeField] GameController gameController;
+
     void Start()
     {
         if (showlore)
@@ -23,7 +24,13 @@ public class loreNotes : MonoBehaviour
         lore1.enabled = false;
         lore2.enabled = false;
         lore3.enabled = false;
+        lore1Button.gameObject.SetActive(false);
+        lore2Button.gameObject.SetActive(true);
+        lore3Button.gameObject.SetActive(false);
 
+        if (gameController.gotLore1) { lore1Button.gameObject.SetActive(true); showlore.SetActive(true);  lore1.enabled = true; }
+        if (gameController.gotLore2) { lore1Button.gameObject.SetActive(true); showlore.SetActive(true); lore2.enabled = true; }
+        if (gameController.gotLore3) { lore1Button.gameObject.SetActive(true); showlore.SetActive(true); lore3.enabled = true; }
 
         lore1Button.onClick.AddListener(openlore1);
         lore2Button.onClick.AddListener(openlore2);
