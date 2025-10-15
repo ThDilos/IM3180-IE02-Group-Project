@@ -216,7 +216,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Test",
+                    "name": "Silly",
                     "type": "Button",
                     "id": "be8115a0-b606-4d66-9125-606e163f13b6",
                     "expectedControlType": "",
@@ -262,7 +262,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Test",
+                    "action": "Silly",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -280,7 +280,7 @@
                 {
                     "name": "",
                     "id": "ccc52d4b-3be9-4f39-b7b6-b28167d50fa0",
-                    "path": "",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
