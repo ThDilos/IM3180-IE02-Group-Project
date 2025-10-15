@@ -37,15 +37,12 @@ public class GameController : MonoBehaviour
     [Header("Lore Object for Unlocking")]
     [SerializeField] public bool gotLore1 = false;
     [SerializeField] private GameObject lore1fromPrinter;
-    [SerializeField] private GameObject showLore1;
 
     [SerializeField] public bool gotLore2 = false;
     [SerializeField] private GameObject lore2fromPrinter;
-    [SerializeField] private GameObject showLore2;
 
     [SerializeField] public bool gotLore3 = false;
     [SerializeField] private GameObject lore3fromPrinter;
-    [SerializeField] private GameObject showLore3;
 
 
     [Header("Central Components Control")]
@@ -184,14 +181,7 @@ public class GameController : MonoBehaviour
     }
     public void ObtainKnife()
     {
-        //gotKnife = true;
-        gotLore1 = true;
-
-        if (labReport != null)
-        {
-            showLore1.SetActive(true);
-        }
-
+        gotKnife = true;
     }
     public void ObtainRubberDuck()
     {
@@ -202,16 +192,13 @@ public class GameController : MonoBehaviour
     public void ObtainLore1()
     {
         gotLore1 = true;
-        showLore1.SetActive(true);
     }
     public void ObtainLore2()
     {
         gotLore2 = true;
-        showLore2.SetActive(true);
     }
     public void ObtainLore3()
     {
         gotLore3 = true;
-        showLore3.SetActive(true);
     }
 }

@@ -14,6 +14,10 @@ public class loreNotes : MonoBehaviour
 
     [SerializeField] GameController gameController;
 
+    bool shownLore1 = false;
+    bool shownLore2 = false;
+    bool shownLore3 = false;
+
     void Start()
     {
         if (showlore)
@@ -25,12 +29,8 @@ public class loreNotes : MonoBehaviour
         lore2.enabled = false;
         lore3.enabled = false;
         lore1Button.gameObject.SetActive(false);
-        lore2Button.gameObject.SetActive(true);
+        lore2Button.gameObject.SetActive(false);
         lore3Button.gameObject.SetActive(false);
-
-        if (gameController.gotLore1) { lore1Button.gameObject.SetActive(true); showlore.SetActive(true);  lore1.enabled = true; }
-        if (gameController.gotLore2) { lore1Button.gameObject.SetActive(true); showlore.SetActive(true); lore2.enabled = true; }
-        if (gameController.gotLore3) { lore1Button.gameObject.SetActive(true); showlore.SetActive(true); lore3.enabled = true; }
 
         lore1Button.onClick.AddListener(openlore1);
         lore2Button.onClick.AddListener(openlore2);
@@ -38,6 +38,10 @@ public class loreNotes : MonoBehaviour
     }
     void Update()
     {
+        if (gameController.gotLore1 && !shownLore1) { lore1Button.gameObject.SetActive(true); openlore1(); shownLore1 = true; }
+        if (gameController.gotLore2 && !shownLore2) { lore2Button.gameObject.SetActive(true); openlore2(); shownLore2 = true; }
+        if (gameController.gotLore3 && !shownLore3) { lore3Button.gameObject.SetActive(true); openlore3(); shownLore3 = true; }
+
         if (Input.GetMouseButtonDown(0)) // left click
         {
             showlore.transform.SetAsFirstSibling();
