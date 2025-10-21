@@ -72,7 +72,8 @@ public class GameController : MonoBehaviour
 
         // Limit Framerate [Render Pipeline]
         PlayerPrefs.SetInt("FPS", frameRate); // temp, to be deleted afterwards.
-        try { frameRate = PlayerPrefs.GetInt("FPS"); } catch { };
+        try { frameRate = PlayerPrefs.GetInt("FPS"); } catch { }
+        ;
         QualitySettings.vSyncCount = 0; // Set vSyncCount to 0 so that using .targetFrameRate is enabled.
         Application.targetFrameRate = frameRate; // Default fps is set to 60, so that your GPU won't scream eve
     }
@@ -173,7 +174,7 @@ public class GameController : MonoBehaviour
     public void ObtainLabReport()
     {
         gotLabReport = true;
-        
+
         if (labReport != null)
         {
             labReport.SetActive(true);
@@ -187,7 +188,7 @@ public class GameController : MonoBehaviour
     {
         gotRubberDuck = true;
 
-        
+
     }
     public void ObtainLore1()
     {

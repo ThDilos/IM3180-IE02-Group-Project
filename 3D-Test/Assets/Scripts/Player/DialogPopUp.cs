@@ -53,7 +53,7 @@ public class DialogPopUp : MonoBehaviour
     void Start()
     {
         InputActionMap maps = inputs.FindActionMap("Utils");
-        test = maps.FindAction("Test");
+        test = maps.FindAction("Silly");
         dialogScript = dialogBox.GetComponent<DialogBox>();
         if (dialogBox == null)
         {

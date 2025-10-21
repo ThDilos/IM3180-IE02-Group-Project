@@ -175,6 +175,7 @@ public class Movement : MonoBehaviour
     {
         if (CanJump())
         {
+            
             rb.AddForce(Vector3.up * rb.mass * force, ForceMode.Impulse);
             grounded = false;
             if (sc.activatedCharacter == SwitchCharacter.ActivatedCharacter.CAT)

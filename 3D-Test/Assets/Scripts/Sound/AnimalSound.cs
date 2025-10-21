@@ -6,6 +6,7 @@ public class AnimalSound : MonoBehaviour
 {
     public SwitchCharacter switchCharacter;
     public Movement movementScript;
+    private Water1 waterScript;
 
     public AudioSource audioSource;
     public AudioClip[] catNoise;
