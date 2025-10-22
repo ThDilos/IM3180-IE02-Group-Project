@@ -21670,6 +21670,9 @@ MonoBehaviour:
   - {fileID: 1572721849}
   invert: 0
   animState: activated
+  audioSource: {fileID: 1828791151}
+  buttonClick: {fileID: 8300000, guid: 9af8089eb9fca9b408959bf2c086f479, type: 3}
+  doorOpen: {fileID: 8300000, guid: c3ecd88922f0e334f97684ccbb2eeaf6, type: 3}
 --- !u!95 &1859543373
 Animator:
   serializedVersion: 7
