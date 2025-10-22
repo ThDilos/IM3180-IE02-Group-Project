@@ -20,6 +20,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float gooseWalkSpeed = 1.0f;
     [SerializeField] private float gooseRunSpeed = 2.0f;
     [SerializeField] private float gooseJumpForce = 5.0f;
+    [Tooltip("For Buoyancy Calculation")] [SerializeField] private float gooseMass = 1.0f;
 
     [Header("Cat")]
     [SerializeField] private float catWalkSpeed = 1.0f;
@@ -104,7 +105,7 @@ public class Movement : MonoBehaviour
         fbAction = map.FindAction("FB");
         jump = map.FindAction("Jump");
         run = map.FindAction("Run");
-        originalMass = 0;
+        originalMass = 0.1f;
     }
 
     // Update is called once per frame
@@ -222,6 +223,7 @@ public class Movement : MonoBehaviour
                 walkSpeed = gooseWalkSpeed;
                 runSpeed = gooseRunSpeed;
                 jumpForce = gooseJumpForce;
+                rb.mass = gooseMass;
                 gameObject.layer = 0;
                 break;
             case SwitchCharacter.ActivatedCharacter.CAT:
