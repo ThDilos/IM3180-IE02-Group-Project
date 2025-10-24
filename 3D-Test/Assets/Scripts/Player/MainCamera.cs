@@ -23,7 +23,7 @@ public class MainCamera : MonoBehaviour
     [Tooltip("Distance is the two Parallel Plane's distance ignoring vertical displacements\nx for Min, y for Max")]
     [SerializeField] Vector2 clampCamDistance = new Vector2(10, 20);
     [Tooltip("Only Used for Cam Clamping. How fast does camera follow?")]
-    [SerializeField] float camFollowSpeed = 1f;
+    [SerializeField] float camFollowSpeed = 5f;
 
     Vector3 velocity;
     Rigidbody targetRB;
@@ -39,7 +39,7 @@ public class MainCamera : MonoBehaviour
     }
 
     // Called every frame but it's the last to be executed
-    private void LateUpdate()
+    private void Update()
     {
         if (!target) return;
 
