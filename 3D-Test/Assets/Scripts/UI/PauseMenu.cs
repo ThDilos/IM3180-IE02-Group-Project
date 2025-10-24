@@ -34,7 +34,7 @@ public class PauseMenu : MonoBehaviour
             TogglePauseMenu();
         }
 
-        sfxSlider.onValueChanged.AddListener(delegate { sfxSource.volume = sfxSlider.value; });
+        sfxSlider.onValueChanged.AddListener(delegate { sfxSource.volume = sfxSlider.value; PlayerPrefs.SetFloat("SFX_Volume", sfxSlider.value); });
     }
 
     public void Quitgame()
