@@ -4016,6 +4016,7 @@ MonoBehaviour:
   rewindPosition: 0
   updateFrequency: 5
   failSafeTimer: 1
+  isGliding: 0
 --- !u!95 &315017508
 Animator:
   serializedVersion: 7
@@ -22343,6 +22344,26 @@ PrefabInstance:
     - target: {fileID: 8157121233527359164, guid: 277b797e018e96d4d915e8dce05c1cd1, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8157121233527359164, guid: 277b797e018e96d4d915e8dce05c1cd1, type: 3}
+      propertyPath: splashClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 76c63dab0736d714fb2b961e989b5582, type: 3}
+    - target: {fileID: 8157121233527359164, guid: 277b797e018e96d4d915e8dce05c1cd1, type: 3}
+      propertyPath: pitchRefVel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8157121233527359164, guid: 277b797e018e96d4d915e8dce05c1cd1, type: 3}
+      propertyPath: velThreshold
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8157121233527359164, guid: 277b797e018e96d4d915e8dce05c1cd1, type: 3}
+      propertyPath: dragDivisionScale
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 8157121233527359164, guid: 277b797e018e96d4d915e8dce05c1cd1, type: 3}
+      propertyPath: buoyancyDivisionScale
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

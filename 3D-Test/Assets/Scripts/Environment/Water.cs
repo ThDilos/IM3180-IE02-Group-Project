@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering.Universal.Internal;
 
 [RequireComponent(typeof(BoxCollider))]
 public class Water : MonoBehaviour
@@ -14,9 +13,23 @@ public class Water : MonoBehaviour
     [SerializeField] private Vector3 flowVelocity = Vector3.zero;
 
     [Header("Extra Amendments, for when real values bring too strong of an effect")]
-    [SerializeField] private int buoyancyDivisionScale = 50;
-    [SerializeField] private int dragDivisionScale = 1000;
+    [SerializeField] private int buoyancyDivisionScale = 80;
+    [SerializeField] private int dragDivisionScale = 400;
 
+    [Header("Respawn Condition")]
+    [SerializeField] private RespawnCondition respawnCondition = RespawnCondition.SUBMERGED;
+    [Tooltip("For SUBMERGED: Respawn when the collider's height * value is under water (Usually 0.0-1.0)")]
+    [SerializeField] private float submergeHeightScale = 0.8f;
+
+    [Header("Splash SFX Settings")]
+    [SerializeField] private AudioClip splashClip;       // splash SFX
+    [SerializeField] private float pitchRefVel = 5.0f; // The reference velocity to compare, if falling vel = it, pitch = 1.0f;
+    [SerializeField] private float velThreshold = 0.5f; // Below which the splash will not play
+    private enum RespawnCondition
+    {
+        ONCETOUCHED,
+        SUBMERGED
+    }
 
     private static float dragCoefficient = 2.05f;
 
@@ -44,11 +57,11 @@ public class Water : MonoBehaviour
     {
         bc = GetComponent<BoxCollider>();
         checkAreaCenter = transform.position + bc.center;
-        checkAreaSize = bc.size * detectionSizeToColliderSize;
+        checkAreaSize = bc.bounds.size * detectionSizeToColliderSize / 2;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Collider[] hitColliders = Physics.OverlapBox(checkAreaCenter, checkAreaSize);
         foreach (var collider in hitColliders)
@@ -73,10 +86,23 @@ public class Water : MonoBehaviour
                 SwitchCharacter sc = collider.GetComponentInParent<SwitchCharacter>();
                 Movement movement = sc.GetComponentInParent<Movement>();
 
+
                 // Respawn player if not goose
                 if (sc.activatedCharacter != SwitchCharacter.ActivatedCharacter.GOOSE)
                 {
-                    movement.Respawn();
+                    float waterSurfaceY = transform.position.y + bc.size.y;
+                    switch (respawnCondition)
+                    {
+                        case RespawnCondition.ONCETOUCHED:
+                            movement.Respawn();
+                            break;
+                        case RespawnCondition.SUBMERGED:
+                            // Calculate the Y cordinate of the top of the Collider
+                            float colliderTopY = collider.transform.position.y + collider.bounds.size.y;
+                            if (waterSurfaceY > colliderTopY * submergeHeightScale)
+                                movement.Respawn();
+                            break;
+                    }
                     continue;
                 }
             }
@@ -85,13 +111,29 @@ public class Water : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnTriggerEnter(Collider collider)
     {
-        if (bc != null && checkAreaCenter != null && checkAreaSize != null)
+        Rigidbody rb = null;
+        float pitch = 0f;
+        if (collider.transform.GetComponentInParent<Rigidbody>() == null)
         {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireCube(checkAreaCenter, checkAreaSize);
+            rb = collider.GetComponent<Rigidbody>();
         }
+        else
+        {
+            rb = collider.transform.GetComponentInParent<Rigidbody>();
+        }
+
+        if (rb != null)
+        {
+            float fallVel = Mathf.Abs(rb.linearVelocity.y);
+
+            if (fallVel < velThreshold) return; // Don't play splash sfx if fall slowly
+            pitch = Mathf.Clamp(2.0f - fallVel / pitchRefVel, 1f, 2f);
+            Debug.Log("Vel = " + fallVel + " pitch = " + pitch);
+        }
+        else pitch = 1f;
+        TryPlaySplashAt(collider.transform.position, pitch);
     }
 
     // Return the magnitude * direction of buoyancy, normally it's just (0, Float Force, 0)
@@ -120,5 +162,29 @@ public class Water : MonoBehaviour
 
         drag = dragCoefficient * (liquidDensity / dragDivisionScale * relativeVelocity * relativeVelocity) * referenceArea / 2 * (-colliderVel.normalized); // Drag against movement direction
         return drag;
+    }
+
+    // Play Splash Sound
+    private void TryPlaySplashAt(Vector3 pos, float pitch)
+    {
+        GameObject tempObject = new GameObject();
+        AudioSource tempSource = tempObject.AddComponent<AudioSource>();
+        tempSource.pitch = pitch;
+        tempSource.volume = PlayerPrefs.GetFloat("SFX_Volume");
+        tempSource.clip = splashClip;
+        tempObject.transform.position = pos;
+        tempSource.Play();
+
+        Destroy(tempObject, splashClip.length);
+    }
+
+    // Show the Detection Area in Editor
+    private void OnDrawGizmos()
+    {
+        if (bc != null && checkAreaCenter != null && checkAreaSize != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireCube(checkAreaCenter, checkAreaSize * 2);
+        }
     }
 }
