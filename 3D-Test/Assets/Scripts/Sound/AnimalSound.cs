@@ -30,7 +30,7 @@ public class AnimalSound : MonoBehaviour
             if (movementScript.CanJump())
                 PlayJumpSound();
         }
-        if (movementScript.ClassMechanicsGoose())
+        if (movementScript.isGliding)
         {
             gooseGlide();
         }

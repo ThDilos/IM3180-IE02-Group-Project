@@ -57,6 +57,9 @@ public class Movement : MonoBehaviour
     [Tooltip("How fast (second) the player dies again for this position to be abandoned, and routed to the spawn Point?")]
     [SerializeField] private float failSafeTimer = 1f; // Abolish rewinding and use spawnPoint if dies too quickly
 
+    // Referenced in other scripts
+    public bool isGliding = false;
+
     // Runtime Vars
     private Rigidbody rb;
     private BoxCollider bc;
@@ -111,6 +114,9 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Reset all referenced variables at the start
+        isGliding = false;
+
         if (characterSprites == null)
         {
             if (sc.GetAllSpriteTransforms() != null)
@@ -235,18 +241,17 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public bool ClassMechanicsGoose()
+    private void ClassMechanicsGoose()
     {
-        bool gliding = (jump.IsPressed() && rb.linearVelocity.y < 0);
-        animator.SetBool("UsingAbility", gliding);
-        if (gliding)
+        isGliding = (jump.IsPressed() && rb.linearVelocity.y < 0);
+        animator.SetBool("UsingAbility", isGliding);
+        if (isGliding)
         {
             rb.linearVelocity = new Vector3(
                 rb.linearVelocity.x,
                 Mathf.Clamp(rb.linearVelocity.y, -Mathf.Abs(glidingMaxVelY), Mathf.Abs(glidingMaxVelY)),
                 rb.linearVelocity.z);
         }
-        return gliding;
     }
 
     private void ClassMechanicsBear() { }
@@ -320,7 +325,8 @@ public class Movement : MonoBehaviour
 
     private void HandleAnimation()
     {
-        animator.SetFloat("Velocity", rb.linearVelocity.magnitude);
+        float vel = (moveInput.magnitude > 0) ? rb.linearVelocity.magnitude : 0f;
+        animator.SetFloat("Velocity", vel);
         animator.SetFloat("FrontBack", rb.linearVelocity.z);
         //animator.SetBool(fallAnim, !grounded && rb.linearVelocity.y < 0f); // Falling Animation
     }
