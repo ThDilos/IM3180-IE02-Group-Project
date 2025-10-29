@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 public class GameController : MonoBehaviour
 {
     // Always Accessible as an Instance
@@ -168,6 +169,22 @@ public class GameController : MonoBehaviour
             myLogQueue.Dequeue();
         }
         if (debugLogs != null) debugLogs.text = myLog;
+    }
+
+    public void DelayedSpawnObject(Vector3 pos, Quaternion rot, GameObject obj, float delay)
+    {
+        StartCoroutine(SpawnObj(pos, rot, obj, delay));
+    }
+
+    IEnumerator SpawnObj(Vector3 pos, Quaternion rot, GameObject obj, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        GameObject newObj = Instantiate(obj, pos, rot);
+        newObj.SetActive(true);
+        RespawnableObject script = newObj.GetComponent<RespawnableObject>();
+        script.TriggerRespawnSFX();
+        Debug.Log("New Clone of " + obj.name + " created at " + pos);
+        Destroy(obj);
     }
 
     // Only called once in tutorial room

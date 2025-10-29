@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(BoxCollider))]
 public class Water : MonoBehaviour
@@ -15,6 +16,10 @@ public class Water : MonoBehaviour
     [Header("Extra Amendments, for when real values bring too strong of an effect")]
     [SerializeField] private int buoyancyDivisionScale = 80;
     [SerializeField] private int dragDivisionScale = 400;
+
+    [Header("Objects?")]
+    [SerializeField] private bool destroyObjects = false;
+    [SerializeField] private LayerMask destroyLayer = 1;  
 
     [Header("Respawn Condition")]
     [SerializeField] private RespawnCondition respawnCondition = RespawnCondition.SUBMERGED;
@@ -63,6 +68,12 @@ public class Water : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        Collider[] destroyColliders = Physics.OverlapBox(checkAreaCenter, checkAreaSize, Quaternion.identity, destroyLayer);
+        foreach (var collider in destroyColliders)
+        {
+            collider.gameObject.transform.parent.gameObject.SetActive(false);
+        }
+
         Collider[] hitColliders = Physics.OverlapBox(checkAreaCenter, checkAreaSize);
         foreach (var collider in hitColliders)
         {
