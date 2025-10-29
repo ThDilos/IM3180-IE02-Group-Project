@@ -3,23 +3,25 @@ using UnityEngine.UI;
 
 public class achievements : MonoBehaviour
 {
-    public Image knife;
-    public Image rubberDuck;
-    //public Image ach3;
+    public Image badge1;
+    public Image badge2;
+    public Image badge3;
+    public Image badge4;
 
     [SerializeField] GameController gameController;
 
     void Start()
     {
-        knife.enabled = false;
-        rubberDuck.enabled = false;
-        //ach3.enabled = false;
+        badge1.enabled = false;
+        badge2.enabled = false;
+        badge3.enabled = false;
+        badge4.enabled = false;
 
     }
     void Update()
     {
-        if (gameController.gotKnife) { knife.enabled = true; }
-        if (gameController.gotRubberDuck) { rubberDuck.enabled = true; }
-        //if (gameController.gotLore3) { lore3Button.gameObject.SetActive(true); openlore3(); shownLore3 = true; }
+        if (gameController.gotKnife) { badge1.enabled = true; }
+        if (gameController.gotRubberDuck) { badge2.enabled = true; }
+        if (gameController.pushedFlowerPot) { badge3.enabled = true; }
     }
 }

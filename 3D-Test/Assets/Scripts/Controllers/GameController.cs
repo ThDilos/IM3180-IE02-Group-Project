@@ -32,7 +32,15 @@ public class GameController : MonoBehaviour
 
     [Header("Rubber Duck Object for Unlocking")]
     [SerializeField] public bool gotRubberDuck = false;
+    [SerializeField] private int rubberDuckCount;
+    [SerializeField] private int unlockDuckCount;
     [SerializeField] private GameObject rubberDuck;
+
+    [Header("Flower Pot Object for Unlocking")]
+    [SerializeField] public bool pushedFlowerPot = false;
+    [SerializeField] private int pushedPots;
+    [SerializeField] private int unlockPotCount;
+    [SerializeField] private GameObject flowerPot;
 
     [Header("Lore Object for Unlocking")]
     [SerializeField] public bool gotLore1 = false;
@@ -186,9 +194,25 @@ public class GameController : MonoBehaviour
     }
     public void ObtainRubberDuck()
     {
-        gotRubberDuck = true;
+        if (gotRubberDuck) return; 
 
+        rubberDuckCount = Mathf.Min(rubberDuckCount + 1, unlockDuckCount);
 
+        if (rubberDuckCount >= unlockDuckCount)
+        {
+            gotRubberDuck = true;
+        }
+    }
+    public void PushFlowerPot()
+    {
+        if (pushedFlowerPot) return;
+
+        pushedPots = Mathf.Min(pushedPots + 1, unlockPotCount);
+
+        if (pushedPots >= unlockPotCount)
+        {
+            pushedFlowerPot = true;
+        }
     }
     public void ObtainLore1()
     {
