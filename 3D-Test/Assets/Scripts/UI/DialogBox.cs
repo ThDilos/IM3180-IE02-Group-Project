@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class DialogBox : MonoBehaviour
 {
-    public static DialogBox Instance;
-
     public TextMeshProUGUI textComponent;
     public RawImage iconImage;
     public float textSpeed;
@@ -21,17 +19,6 @@ public class DialogBox : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        // If there's already one instance, destroy the new one
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        // Assign and make persistent throughout scenes
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
         gameObject.SetActive(false); // Hide when Start
         textComponent.text = string.Empty; // Hide Text
 
