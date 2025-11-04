@@ -8547,17 +8547,15 @@ MonoBehaviour:
   lines:
   - "The procedure was a success. Your mutations have stabilized\u2026 "
   - Begin with basic movement. Use the W, A, S, D keys.
-  - 'Each of you will have distinct abilities. '
-  - To shift between yourselves, press 1, 2, or 3. Press the space bar to activate
-    your ability.
+  - Each of you will have distinct abilities. To shift between yourselves, press
+    1, 2, or 3. Press the space bar to activate your ability.
   - Additional data is logged in the lab report. Consult them for clarification,
     if needed.
-  - 'You three will need time to adapt so we have prepared simulations to accelerate
-    the process. '
-  - Your first trial begins now. The chamber door on the right is locked.
-  - A switch lies within reach, if you work together to combine your abilities effectively.
-  - Fail, and the system will record it as weakness.
-  selfWarpLength: 10000
+  - You three will need time to adapt so we have prepared simulations to accelerate
+    the process. Your first trial begins now. The chamber door on the right is locked.
+    A switch lies within reach, if you work together to combine your abilities effectively.
+    Fail, and the system will record it as weakness.
+  selfWarpLength: 0
 --- !u!4 &771712649
 Transform:
   m_ObjectHideFlags: 0
@@ -22936,9 +22934,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Screen UI Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4365106005162216022, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4852347335078975285, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -91
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020439051147180174, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5074986928628362722, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_Type
@@ -22976,25 +22982,21 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 330454206}
+    - target: {fileID: 5929181362059615919, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6339077660204087890, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 6347814844346518802, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -149.3055
+      value: -50.359985
       objectReference: {fileID: 0}
     - target: {fileID: 6347814844346518802, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -4.2909
-      objectReference: {fileID: 0}
-    - target: {fileID: 6347814844346518802, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 68.40277
-      objectReference: {fileID: 0}
-    - target: {fileID: 6347814844346518802, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 2.1457
+      value: -105.1
       objectReference: {fileID: 0}
     - target: {fileID: 6822284978324641045, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -23005,28 +23007,20 @@ PrefabInstance:
       value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 6909758856553460385, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
-      propertyPath: m_fontSize
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6909758856553460385, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_margin.w
-      value: 6.2630267
+      value: -44.836357
       objectReference: {fileID: 0}
     - target: {fileID: 6909758856553460385, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_margin.x
-      value: 5.628929
+      value: 119.026566
       objectReference: {fileID: 0}
     - target: {fileID: 6909758856553460385, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_margin.y
-      value: 14.33111
+      value: -42.699493
       objectReference: {fileID: 0}
     - target: {fileID: 6909758856553460385, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_margin.z
-      value: 7.860832
-      objectReference: {fileID: 0}
-    - target: {fileID: 6909758856553460385, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 20
+      value: -17.611183
       objectReference: {fileID: 0}
     - target: {fileID: 6998588228726191740, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_SizeDelta.x
@@ -23043,6 +23037,10 @@ PrefabInstance:
     - target: {fileID: 6998588228726191740, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 69.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168393080564755948, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7325749340581373737, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_AnchorMax.x
@@ -23087,6 +23085,10 @@ PrefabInstance:
     - target: {fileID: 8129505093331354789, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508701565127101513, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8685072166801109786, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_AnchorMax.x

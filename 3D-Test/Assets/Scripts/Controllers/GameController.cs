@@ -77,7 +77,6 @@ public class GameController : MonoBehaviour
         // Limit UpdateRate [Runtime]
         Time.fixedDeltaTime = 1f / updatePerSecond;
         timeScale = Time.timeScale;
-        Debug.Log("Fixed Delta Time Changed to " + 1f / updatePerSecond + " = " + Time.fixedDeltaTime);
 
         // Limit Framerate [Render Pipeline]
         PlayerPrefs.SetInt("FPS", frameRate); // temp, to be deleted afterwards.

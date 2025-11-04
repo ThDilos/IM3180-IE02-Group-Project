@@ -42,10 +42,9 @@ public class TriggerDialog : MonoBehaviour, IInteractable
     private void Start()
     {
         playerTransform = GameObject.Find("Player").transform;
-        // Use the Base Canvas as reference to find inactive Object
-        GameObject canvas = GameObject.Find("Screen UI Canvas");
-        dialogBox = canvas.transform.Find("Dialog Box").gameObject;
-        dialogScript = dialogBox.GetComponent<DialogBox>();
+        // Get DialogBox instance :3
+        dialogScript = DialogBox.Instance;
+        dialogBox = dialogScript.gameObject;
 
         OverflowDetection();
     }

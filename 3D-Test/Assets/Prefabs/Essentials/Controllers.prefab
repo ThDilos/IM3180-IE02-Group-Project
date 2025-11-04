@@ -60,7 +60,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &4096283382792358240
 MonoBehaviour:
@@ -147,11 +147,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038b559848722394fa9e131bb9765b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updatePerSecond: 20
   frameRate: 60
   debugActivate: 111
   debugCanvas: {fileID: 3385978004012543823}
   gotLabReport: 0
   labReport: {fileID: 0}
+  gotKnife: 0
+  knife: {fileID: 0}
+  gotRubberDuck: 0
+  rubberDuckCount: 0
+  unlockDuckCount: 0
+  rubberDucks: []
+  pushedFlowerPot: 0
+  pushedPots: 0
+  unlockPotCount: 0
+  flowerPots: []
+  gotLore1: 0
+  lore1fromPrinter: {fileID: 0}
+  gotLore2: 0
+  lore2fromPrinter: {fileID: 0}
+  gotLore3: 0
+  lore3fromPrinter: {fileID: 0}
+  inputActions: {fileID: -944628639613478452, guid: e17998b51c5033b4b83ed667400a18fe, type: 3}
+  isPaused: 0
 --- !u!1 &4324844159067068336
 GameObject:
   m_ObjectHideFlags: 0

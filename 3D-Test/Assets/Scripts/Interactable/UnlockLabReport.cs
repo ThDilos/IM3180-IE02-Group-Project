@@ -7,6 +7,8 @@ public class UnlockLabReport : MonoBehaviour
     public AudioClip closeBookClip;
     private void OnDestroy()
     {
+        if (GameController.Instance == null) return;
+
         gameController.ObtainLabReport();
         audioSource.PlayOneShot(closeBookClip);
     }

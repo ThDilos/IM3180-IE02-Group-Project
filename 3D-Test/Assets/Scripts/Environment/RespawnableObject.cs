@@ -27,7 +27,8 @@ public class RespawnableObject : MonoBehaviour
 
     private void OnDisable()
     {
-        GameController.Instance.DelayedSpawnObject(pos, rot, this.gameObject, respawnDelay);
+        if (GameController.Instance != null)
+            GameController.Instance.DelayedSpawnObject(pos, rot, this.gameObject, respawnDelay);
     }
 
     public void TriggerRespawnSFX()
