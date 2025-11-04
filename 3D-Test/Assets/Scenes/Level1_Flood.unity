@@ -1317,8 +1317,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 317212495}
   m_SourcePrefab: {fileID: 100100000, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
+--- !u!1 &317212494 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
+  m_PrefabInstance: {fileID: 317212493}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &317212495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317212494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1793de76e6b8ae24bb62252e9ed00946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnlockRubberDuck
+  gameController: {fileID: 1890527381}
+  audioSource: {fileID: 1828791151}
+  rubberDuckCLip: {fileID: 8300000, guid: dbe3e99de71137d46b10856c3d5e290a, type: 3}
 --- !u!1001 &320545414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43847,6 +43870,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7754538902350255398, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
   m_PrefabInstance: {fileID: 1247767649}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1247767651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
+  m_PrefabInstance: {fileID: 1247767649}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1266760428
 GameObject:
   m_ObjectHideFlags: 0
@@ -44337,8 +44365,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1307385854}
   m_SourcePrefab: {fileID: 100100000, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
+--- !u!1 &1307385853 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
+  m_PrefabInstance: {fileID: 1307385852}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1307385854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307385853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1793de76e6b8ae24bb62252e9ed00946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnlockRubberDuck
+  gameController: {fileID: 1890527381}
+  audioSource: {fileID: 1828791151}
+  rubberDuckCLip: {fileID: 8300000, guid: dbe3e99de71137d46b10856c3d5e290a, type: 3}
 --- !u!1001 &1308943933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46409,6 +46460,30 @@ PrefabInstance:
       propertyPath: updatePerSecond
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 2914947966897703091, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
+      propertyPath: flowerPots.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2914947966897703091, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
+      propertyPath: rubberDucks.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2914947966897703091, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
+      propertyPath: 'flowerPots.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1247767651}
+    - target: {fileID: 2914947966897703091, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
+      propertyPath: 'rubberDucks.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1833137304}
+    - target: {fileID: 2914947966897703091, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
+      propertyPath: 'rubberDucks.Array.data[1]'
+      value: 
+      objectReference: {fileID: 317212494}
+    - target: {fileID: 2914947966897703091, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
+      propertyPath: 'rubberDucks.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1307385853}
     - target: {fileID: 4306376830965113119, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
       propertyPath: m_Name
       value: Controllers
@@ -47342,8 +47417,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1833137305}
   m_SourcePrefab: {fileID: 100100000, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
+--- !u!1 &1833137304 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
+  m_PrefabInstance: {fileID: 1833137303}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1833137305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833137304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1793de76e6b8ae24bb62252e9ed00946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnlockRubberDuck
+  gameController: {fileID: 1890527381}
+  audioSource: {fileID: 1828791151}
+  rubberDuckCLip: {fileID: 8300000, guid: dbe3e99de71137d46b10856c3d5e290a, type: 3}
 --- !u!1001 &1847974824
 PrefabInstance:
   m_ObjectHideFlags: 0
