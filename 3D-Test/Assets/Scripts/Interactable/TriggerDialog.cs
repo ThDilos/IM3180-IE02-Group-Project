@@ -10,6 +10,7 @@ public class TriggerDialog : MonoBehaviour, IInteractable
     public bool destroyAfterInteraction = false;
 
     [Header("Only who can pickup")]
+    [SerializeField] private bool charLimitEnabled = false;
     [SerializeField] private SwitchCharacter.ActivatedCharacter characterLimit;
 
     [Header("Progressive Lines - Repeat the following lines when 1st lines is already triggered")]
@@ -41,10 +42,9 @@ public class TriggerDialog : MonoBehaviour, IInteractable
     private void Start()
     {
         playerTransform = GameObject.Find("Player").transform;
-        // Use the Base Canvas as reference to find inactive Object
-        GameObject canvas = GameObject.Find("Screen UI Canvas");
-        dialogBox = canvas.transform.Find("Dialog Box").gameObject;
-        dialogScript = dialogBox.GetComponent<DialogBox>();
+        // Get DialogBox instance :3
+        dialogScript = DialogBox.Instance;
+        dialogBox = dialogScript.gameObject;
 
         OverflowDetection();
     }
@@ -90,8 +90,8 @@ public class TriggerDialog : MonoBehaviour, IInteractable
 
     public bool Condition()
     {
-            return !dialogBox.activeSelf &&
-            GameObject.Find("Player").GetComponent<SwitchCharacter>().activatedCharacter == characterLimit;
+            return !dialogBox.activeSelf && (!charLimitEnabled ||
+            (charLimitEnabled && GameObject.Find("Player").GetComponent<SwitchCharacter>().activatedCharacter == characterLimit));
     }
 
     private void OverflowDetection()

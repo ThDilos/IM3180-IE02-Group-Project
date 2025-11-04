@@ -20,6 +20,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float gooseWalkSpeed = 1.0f;
     [SerializeField] private float gooseRunSpeed = 2.0f;
     [SerializeField] private float gooseJumpForce = 5.0f;
+    [Tooltip("For Buoyancy Calculation")] [SerializeField] private float gooseMass = 1.0f;
 
     [Header("Cat")]
     [SerializeField] private float catWalkSpeed = 1.0f;
@@ -56,12 +57,8 @@ public class Movement : MonoBehaviour
     [Tooltip("How fast (second) the player dies again for this position to be abandoned, and routed to the spawn Point?")]
     [SerializeField] private float failSafeTimer = 1f; // Abolish rewinding and use spawnPoint if dies too quickly
 
-    [Header("Animations - Input the String name of the Animation States Bool")]
-    [Tooltip("Trigger")]
-    [SerializeField] private string jumpAnim = "jump";
-    [SerializeField] private string runAnim = "running";
-    [SerializeField] private string fallAnim = "falling";
-    [SerializeField] private string walkAnim = "walking";
+    // Referenced in other scripts
+    public bool isGliding = false;
 
     // Runtime Vars
     private Rigidbody rb;
@@ -96,7 +93,7 @@ public class Movement : MonoBehaviour
 
     private DialogPopUp dpu;
 
-    private void Awake()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
         sc = GetComponent<SwitchCharacter>();
@@ -105,18 +102,21 @@ public class Movement : MonoBehaviour
         animator = GetComponent<Animator>();
         UpdateStats(sc.activatedCharacter);
 
-        inputActions = sc.inputActions;
+        inputActions = GameController.Instance.inputActions;
         InputActionMap map = inputActions.FindActionMap("Move");
         lrAction = map.FindAction("LR");
         fbAction = map.FindAction("FB");
         jump = map.FindAction("Jump");
         run = map.FindAction("Run");
-        originalMass = rb.mass;
+        originalMass = 0.1f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Reset all referenced variables at the start
+        isGliding = false;
+
         if (characterSprites == null)
         {
             if (sc.GetAllSpriteTransforms() != null)
@@ -182,6 +182,7 @@ public class Movement : MonoBehaviour
     {
         if (CanJump())
         {
+            
             rb.AddForce(Vector3.up * rb.mass * force, ForceMode.Impulse);
             grounded = false;
             if (sc.activatedCharacter == SwitchCharacter.ActivatedCharacter.CAT)
@@ -191,7 +192,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private bool CanJump()
+    public bool CanJump()
     {
         return IsGrounded();
     }
@@ -228,6 +229,7 @@ public class Movement : MonoBehaviour
                 walkSpeed = gooseWalkSpeed;
                 runSpeed = gooseRunSpeed;
                 jumpForce = gooseJumpForce;
+                rb.mass = gooseMass;
                 gameObject.layer = 0;
                 break;
             case SwitchCharacter.ActivatedCharacter.CAT:
@@ -241,9 +243,9 @@ public class Movement : MonoBehaviour
 
     private void ClassMechanicsGoose()
     {
-        bool gliding = (jump.IsPressed() && rb.linearVelocity.y < 0);
-        animator.SetBool("UsingAbility", gliding);
-        if (gliding)
+        isGliding = (jump.IsPressed() && rb.linearVelocity.y < 0);
+        animator.SetBool("UsingAbility", isGliding);
+        if (isGliding)
         {
             rb.linearVelocity = new Vector3(
                 rb.linearVelocity.x,
@@ -258,7 +260,6 @@ public class Movement : MonoBehaviour
     {
         if (grounded)
         {
-            Debug.Log("Reset");
             animator.SetBool("UsingAbility", false);
         }
     }
@@ -324,10 +325,10 @@ public class Movement : MonoBehaviour
 
     private void HandleAnimation()
     {
-        animator.SetFloat("Velocity", rb.linearVelocity.magnitude);
+        float vel = (moveInput.magnitude > 0) ? rb.linearVelocity.magnitude : 0f;
+        animator.SetFloat("Velocity", vel);
         animator.SetFloat("FrontBack", rb.linearVelocity.z);
-        animator.SetBool(fallAnim, !grounded && rb.linearVelocity.y < 0f); // Falling Animation
-
+        //animator.SetBool(fallAnim, !grounded && rb.linearVelocity.y < 0f); // Falling Animation
     }
 
 

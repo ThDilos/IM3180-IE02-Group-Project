@@ -118,8 +118,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2178096282656863468}
   - {fileID: 3463986120987656919}
+  - {fileID: 2178096282656863468}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4687970336610909961
@@ -214,7 +214,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4735046499438450236}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9aad2e18b5fdf2f498af5c90e10efbc8, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

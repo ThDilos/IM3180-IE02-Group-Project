@@ -45,7 +45,6 @@ public class SwitchCharacter : MonoBehaviour
     [Header("Put In the Character GameObject")]
     [Tooltip("Each MUST contain a \"Collider\" with a BoxCollider, and a \"Sprite\" contains the sprite renderer. The Order of them will affect which key switch to which character")]
     [SerializeField] public GameObject[] characters;
-    public InputActionAsset inputActions;
 
     private InputAction char1;
     private InputAction char2;
@@ -57,9 +56,9 @@ public class SwitchCharacter : MonoBehaviour
 
     private Transform[] allSpriteTransforms;
 
-    private void Awake()
+    private void Start()
     {
-        InputActionMap map = inputActions.FindActionMap("SwitchCharacter");
+        InputActionMap map = GameController.Instance.inputActions.FindActionMap("SwitchCharacter");
         char1 = map.FindAction("Char1");
         char2 = map.FindAction("Char2");
         char3 = map.FindAction("Char3");
