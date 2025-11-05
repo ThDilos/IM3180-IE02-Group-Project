@@ -12018,7 +12018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7754538902350255398, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7754538902350255398, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12123,7 +12123,9 @@ MonoBehaviour:
   invert: 0
   animState: activated
   audioSource: {fileID: 300488934}
-  buttonClick: {fileID: 8300000, guid: 9af8089eb9fca9b408959bf2c086f479, type: 3}
+  lever: {fileID: 0}
+  pressurePlateon: {fileID: 0}
+  pressurePlateoff: {fileID: 0}
   doorOpen: {fileID: 8300000, guid: c3ecd88922f0e334f97684ccbb2eeaf6, type: 3}
 --- !u!1 &1026911770 stripped
 GameObject:
