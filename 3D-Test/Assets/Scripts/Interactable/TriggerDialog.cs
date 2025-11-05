@@ -16,7 +16,7 @@ public class TriggerDialog : MonoBehaviour, IInteractable
     [Header("Progressive Lines - Repeat the following lines when 1st lines is already triggered")]
     [Tooltip("Whether the 1st sequence of lines only show once, and the next sequence of lines are repeated afterwards.")] public bool progressiveLine;
     public List<string> repeatedLines; // The Lines that are repeated
-    private bool interacting = false;
+    public bool interacting = false;
     private bool alreadyInteracted = false;
 
     [Header("Overflow Action")]

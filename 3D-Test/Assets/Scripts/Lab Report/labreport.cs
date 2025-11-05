@@ -8,7 +8,6 @@ public class labreport : MonoBehaviour
     public GameObject charPanel;
     public GameObject lorePanel;
     public GameObject newPanel;
-    public GameObject mainPanel;
     public Button openreportButton;
     public Button abstractButton;
     public Button charButton;
@@ -28,7 +27,8 @@ public class labreport : MonoBehaviour
     {
         if (!GameController.Instance.gotLabReport)
         {
-            gameObject.SetActive(false);
+            gameObject.SetActive(true);
+            openreportButton.gameObject.SetActive(false);
         }
 
         // Ensure the pause panel is not active at the start
