@@ -8365,7 +8365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 2800000, guid: 07bb54f481b48954eb6f16a0746e3e1b, type: 3}
   lines:
-  - "The procedure was a success. Your mutations have stabilized\u2026 "
+  - You have entered the simulation.
   - Begin with basic movement. Use the W, A, S, D keys.
   - 'Each of you will have distinct abilities. '
   - To shift between yourselves, press 1, 2, or 3. Press the space bar to activate
