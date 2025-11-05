@@ -17763,6 +17763,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Screen UI Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5622046887640841329, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 330454206}
     - target: {fileID: 7325749340581373737, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

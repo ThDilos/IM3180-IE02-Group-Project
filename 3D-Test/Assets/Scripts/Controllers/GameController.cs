@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using static DialogPopUp;
+using static Water;
 public class GameController : MonoBehaviour
 {
     // Always Accessible as an Instance
@@ -42,6 +44,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private int pushedPots;
     [SerializeField] private int unlockPotCount;
     [SerializeField] private GameObject[] flowerPots;
+
+    [Header("Cat go OOB for Unlocking")]
+    [SerializeField] public bool catOOB = false;
 
     [Header("Lore Object for Unlocking")]
     [SerializeField] public bool gotLore1 = false;
@@ -231,6 +236,11 @@ public class GameController : MonoBehaviour
         }
 
         pushedFlowerPot = true;
+    }
+    public void oob()
+    {
+        catOOB = true;
+        Debug.Log("TRUE");
     }
     public void ObtainLore1()
     {

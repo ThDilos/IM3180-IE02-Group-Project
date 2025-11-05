@@ -31,7 +31,7 @@ public class Water : MonoBehaviour
     [SerializeField] private AudioClip splashClip;       // splash SFX
     [SerializeField] private float pitchRefVel = 5.0f; // The reference velocity to compare, if falling vel = it, pitch = 1.0f;
     [SerializeField] private float velThreshold = 0.5f; // Below which the splash will not play
-
+    
     private enum FluidType
     {
         Water,
@@ -45,6 +45,7 @@ public class Water : MonoBehaviour
     }
 
     private static float dragCoefficient = 2.05f;
+    public bool OnceTouchedFired { get; private set; }
 
     // IMPORTANT:
     // SET UP LIQUID AS A BOX, WITH BOX COLLIDER BEING THE LIQUID ITSELF!!! (Do not put collider in the air, match it perfectly to the 3D aspect of where the liquid should be)
@@ -130,6 +131,7 @@ public class Water : MonoBehaviour
                     switch (respawnCondition)
                     {
                         case RespawnCondition.ONCETOUCHED:
+                            OnceTouchedFired = true;
                             movement.Respawn(option);
                             break;
                         case RespawnCondition.SUBMERGED:

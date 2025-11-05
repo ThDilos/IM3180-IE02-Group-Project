@@ -1,27 +1,58 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class achievements : MonoBehaviour
+public class Achievements : MonoBehaviour
 {
-    public Image badge1;
-    public Image badge2;
-    public Image badge3;
-    public Image badge4;
-
-    [SerializeField] GameController gameController;
-
-    void Start()
+    [System.Serializable]
+    public class Badge
     {
-        badge1.enabled = false;
-        badge2.enabled = false;
-        badge3.enabled = false;
-        badge4.enabled = false;
-
+        public string name;
+        public Sprite icon;
+        public bool unlocked;
+        [HideInInspector] public Image imageInstance;
     }
-    void Update()
+
+    [Header("UI Parent to hold badges (with Vertical or Grid Layout Group)")]
+    [SerializeField] private Transform badgeContainer;
+
+    [Header("Prefab for badge Image (simple Image object)")]
+    [SerializeField] private Image badgePrefab;
+
+    [Header("List of all possible badges")]
+    [SerializeField] private List<Badge> badges = new();
+
+    [SerializeField] private GameController gameController;
+
+    private void Start()
     {
-        if (gameController.gotKnife) { badge1.enabled = true; }
-        if (gameController.gotRubberDuck) { badge2.enabled = true; }
-        if (gameController.pushedFlowerPot) { badge3.enabled = true; }
+        // start with none visible
+        foreach (var badge in badges)
+            badge.unlocked = false;
+    }
+
+    private void Update()
+    {
+        // Check each condition once
+        if (gameController.gotKnife) UnlockBadge("knife");
+        if (gameController.gotRubberDuck) UnlockBadge("rubberDuck");
+        if (gameController.pushedFlowerPot) UnlockBadge("flowerPot");
+        if (gameController.catOOB) UnlockBadge("oob");
+    }
+
+    private void UnlockBadge(string badgeName)
+    {
+        var badge = badges.Find(b => b.name == badgeName);
+        if (badge == null || badge.unlocked) return;
+
+        badge.unlocked = true;
+
+        // instantiate the badge image in the container
+        var newBadge = Instantiate(badgePrefab, badgeContainer);
+        newBadge.sprite = badge.icon;
+        newBadge.enabled = true;
+        badge.imageInstance = newBadge;
+
+        // Layout Group will automatically place this new badge in order of unlock
     }
 }
