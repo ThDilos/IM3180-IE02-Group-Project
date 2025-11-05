@@ -68,10 +68,13 @@ public class Water : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Collider[] destroyColliders = Physics.OverlapBox(checkAreaCenter, checkAreaSize, Quaternion.identity, destroyLayer);
-        foreach (var collider in destroyColliders)
+        if (destroyObjects)
         {
-            collider.gameObject.transform.parent.gameObject.SetActive(false);
+            Collider[] destroyColliders = Physics.OverlapBox(checkAreaCenter, checkAreaSize, Quaternion.identity, destroyLayer);
+            foreach (var collider in destroyColliders)
+            {
+                collider.gameObject.transform.parent.gameObject.SetActive(false);
+            }
         }
 
         Collider[] hitColliders = Physics.OverlapBox(checkAreaCenter, checkAreaSize);
