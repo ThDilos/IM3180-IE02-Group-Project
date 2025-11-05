@@ -15,6 +15,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Level0_Lab.unity
     guid: 176f3a99f18be1d438c985ef894f5d86
   - enabled: 1
+    path: Assets/Scenes/Level1_Flood.unity
+    guid: 43f4bb27e9246b34babd0365c3b467e9
+  - enabled: 1
+    path: Assets/Scenes/Level2_Forest.unity
+    guid: 6f641f5b84e0535439922854ebc1ad92
+  - enabled: 1
+    path: Assets/Scenes/Ending Dialogue.unity
+    guid: 3ebf55fe29cf1e744a7e59a2c7756200
+  - enabled: 1
     path: Assets/Scenes/Ending Cutscene.unity
     guid: 103ef58b22a29ae4c8d7d510bc878454
   m_configObjects:
