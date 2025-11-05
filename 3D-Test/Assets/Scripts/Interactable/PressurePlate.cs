@@ -48,6 +48,10 @@ public class PressurePlate : Triggerable
         {
             activated = triggeringMass < other.GetComponent<Rigidbody>().mass;
         }
+        if (other.GetComponentInParent<Rigidbody>() != null)
+        {
+            activated = triggeringMass < other.GetComponentInParent<Rigidbody>().mass;
+        }
     }
 
     private void OnTriggerExit(Collider other)

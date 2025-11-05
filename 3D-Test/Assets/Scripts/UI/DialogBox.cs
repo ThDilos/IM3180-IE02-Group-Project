@@ -125,5 +125,4 @@ public class DialogBox : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-
 }

@@ -16,6 +16,8 @@ public class DialogPopUp : MonoBehaviour
     public enum CommonDialog
     {
         WaterWarning,
+        LavaRespawn,
+        OOB,
         Silly
     }
 
@@ -43,6 +45,8 @@ public class DialogPopUp : MonoBehaviour
     }
 
     [SerializeField] private DialogLines waterWarning;
+    [SerializeField] private DialogLines lavaRespawn;
+    [SerializeField] private DialogLines oob;
     [SerializeField] private DialogLines silly;
 
     // Runtime Vars
@@ -92,8 +96,14 @@ public class DialogPopUp : MonoBehaviour
             case CommonDialog.WaterWarning:
                 PopUpDialog(waterWarning.GetLines(sc.activatedCharacter));
                 break;
+            case CommonDialog.LavaRespawn:
+                PopUpDialog(lavaRespawn.GetLines(sc.activatedCharacter));
+                break;
             case CommonDialog.Silly:
                 PopUpDialog(silly.GetLines(sc.activatedCharacter));
+                break;
+            case CommonDialog.OOB:
+                PopUpDialog(oob.GetLines(sc.activatedCharacter));
                 break;
         }
     }

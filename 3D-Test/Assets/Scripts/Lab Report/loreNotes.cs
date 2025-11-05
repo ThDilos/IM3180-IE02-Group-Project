@@ -12,7 +12,7 @@ public class loreNotes : MonoBehaviour
     public Button lore2Button;
     public Button lore3Button;
 
-    [SerializeField] GameController gameController;
+    private GameController gameController;
 
     bool shownLore1 = false;
     bool shownLore2 = false;
@@ -20,6 +20,8 @@ public class loreNotes : MonoBehaviour
 
     void Start()
     {
+        gameController = GameController.Instance;
+
         if (showlore)
         {
             showlore.SetActive(false);

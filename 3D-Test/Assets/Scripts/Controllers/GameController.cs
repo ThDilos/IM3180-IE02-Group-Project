@@ -35,13 +35,13 @@ public class GameController : MonoBehaviour
     [SerializeField] public bool gotRubberDuck = false;
     [SerializeField] private int rubberDuckCount;
     [SerializeField] private int unlockDuckCount;
-    [SerializeField] private GameObject rubberDuck;
+    [SerializeField] private GameObject[] rubberDucks;
 
     [Header("Flower Pot Object for Unlocking")]
     [SerializeField] public bool pushedFlowerPot = false;
     [SerializeField] private int pushedPots;
     [SerializeField] private int unlockPotCount;
-    [SerializeField] private GameObject flowerPot;
+    [SerializeField] private GameObject[] flowerPots;
 
     [Header("Lore Object for Unlocking")]
     [SerializeField] public bool gotLore1 = false;
@@ -77,7 +77,6 @@ public class GameController : MonoBehaviour
         // Limit UpdateRate [Runtime]
         Time.fixedDeltaTime = 1f / updatePerSecond;
         timeScale = Time.timeScale;
-        Debug.Log("Fixed Delta Time Changed to " + 1f / updatePerSecond + " = " + Time.fixedDeltaTime);
 
         // Limit Framerate [Render Pipeline]
         PlayerPrefs.SetInt("FPS", frameRate); // temp, to be deleted afterwards.
@@ -211,25 +210,27 @@ public class GameController : MonoBehaviour
     }
     public void ObtainRubberDuck()
     {
-        if (gotRubberDuck) return; 
+        if (gotRubberDuck) return;
 
-        rubberDuckCount = Mathf.Min(rubberDuckCount + 1, unlockDuckCount);
-
-        if (rubberDuckCount >= unlockDuckCount)
+        foreach (GameObject duck in rubberDucks)
         {
-            gotRubberDuck = true;
+            if (duck != null && duck.activeInHierarchy)
+                return; 
         }
+
+        gotRubberDuck = true;
     }
     public void PushFlowerPot()
     {
         if (pushedFlowerPot) return;
 
-        pushedPots = Mathf.Min(pushedPots + 1, unlockPotCount);
-
-        if (pushedPots >= unlockPotCount)
+        foreach (GameObject pot in flowerPots)
         {
-            pushedFlowerPot = true;
+            if (pot != null && pot.activeInHierarchy)
+                return;
         }
+
+        pushedFlowerPot = true;
     }
     public void ObtainLore1()
     {

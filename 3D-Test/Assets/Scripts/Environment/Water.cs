@@ -19,9 +19,10 @@ public class Water : MonoBehaviour
 
     [Header("Objects?")]
     [SerializeField] private bool destroyObjects = false;
-    [SerializeField] private LayerMask destroyLayer = 1;  
+    [SerializeField] private LayerMask destroyLayer = 1;
 
     [Header("Respawn Condition")]
+    [SerializeField] private FluidType fluidType = FluidType.Water;
     [SerializeField] private RespawnCondition respawnCondition = RespawnCondition.SUBMERGED;
     [Tooltip("For SUBMERGED: Respawn when the collider's height * value is under water (Usually 0.0-1.0)")]
     [SerializeField] private float submergeHeightScale = 0.8f;
@@ -30,6 +31,13 @@ public class Water : MonoBehaviour
     [SerializeField] private AudioClip splashClip;       // splash SFX
     [SerializeField] private float pitchRefVel = 5.0f; // The reference velocity to compare, if falling vel = it, pitch = 1.0f;
     [SerializeField] private float velThreshold = 0.5f; // Below which the splash will not play
+
+    private enum FluidType
+    {
+        Water,
+        Lava,
+        Skybox
+    }
     private enum RespawnCondition
     {
         ONCETOUCHED,
@@ -68,10 +76,13 @@ public class Water : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Collider[] destroyColliders = Physics.OverlapBox(checkAreaCenter, checkAreaSize, Quaternion.identity, destroyLayer);
-        foreach (var collider in destroyColliders)
+        if (destroyObjects)
         {
-            collider.gameObject.transform.parent.gameObject.SetActive(false);
+            Collider[] destroyColliders = Physics.OverlapBox(checkAreaCenter, checkAreaSize, Quaternion.identity, destroyLayer);
+            foreach (var collider in destroyColliders)
+            {
+                collider.gameObject.transform.parent.gameObject.SetActive(false);
+            }
         }
 
         Collider[] hitColliders = Physics.OverlapBox(checkAreaCenter, checkAreaSize);
@@ -99,19 +110,33 @@ public class Water : MonoBehaviour
 
 
                 // Respawn player if not goose
-                if (sc.activatedCharacter != SwitchCharacter.ActivatedCharacter.GOOSE)
+                if (sc.activatedCharacter != SwitchCharacter.ActivatedCharacter.GOOSE || fluidType != FluidType.Water)
                 {
+                    DialogPopUp.CommonDialog option = DialogPopUp.CommonDialog.WaterWarning;
+                    switch (fluidType)
+                    {
+                        case FluidType.Water:
+                            option = DialogPopUp.CommonDialog.WaterWarning;
+                            break;
+                        case FluidType.Lava:
+                            option = DialogPopUp.CommonDialog.LavaRespawn; 
+                            break;
+                        case FluidType.Skybox:
+                            option = DialogPopUp.CommonDialog.OOB;
+                            break;
+
+                    }
                     float waterSurfaceY = transform.position.y + bc.size.y;
                     switch (respawnCondition)
                     {
                         case RespawnCondition.ONCETOUCHED:
-                            movement.Respawn();
+                            movement.Respawn(option);
                             break;
                         case RespawnCondition.SUBMERGED:
                             // Calculate the Y cordinate of the top of the Collider
                             float colliderTopY = collider.transform.position.y + collider.bounds.size.y;
                             if (waterSurfaceY > colliderTopY * submergeHeightScale)
-                                movement.Respawn();
+                                movement.Respawn(option);
                             break;
                     }
                     continue;
