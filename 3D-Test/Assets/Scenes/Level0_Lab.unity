@@ -22130,6 +22130,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5903537632920649336, guid: 02dddf4edfe67a94096b16b2f7eec295, type: 3}
+      propertyPath: lever
+      value: 
+      objectReference: {fileID: 8300000, guid: 9af8089eb9fca9b408959bf2c086f479, type: 3}
+    - target: {fileID: 5903537632920649336, guid: 02dddf4edfe67a94096b16b2f7eec295, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1828791151}
@@ -22738,7 +22742,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1828791151}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8931549934116457296, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}

@@ -357,6 +357,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4430808163667802384, guid: edbc8c466f5842e4e896921206612cbf, type: 3}
+      propertyPath: doorOpen
+      value: 
+      objectReference: {fileID: 8300000, guid: c3ecd88922f0e334f97684ccbb2eeaf6, type: 3}
+    - target: {fileID: 4430808163667802384, guid: edbc8c466f5842e4e896921206612cbf, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4430808163667802384, guid: edbc8c466f5842e4e896921206612cbf, type: 3}
+      propertyPath: doorOpenVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4430808163667802384, guid: edbc8c466f5842e4e896921206612cbf, type: 3}
+      propertyPath: pressurePlateOn
+      value: 
+      objectReference: {fileID: 8300000, guid: d8fe418648c698549aa69a8e595655cb, type: 3}
+    - target: {fileID: 4430808163667802384, guid: edbc8c466f5842e4e896921206612cbf, type: 3}
+      propertyPath: pressurePlateOff
+      value: 
+      objectReference: {fileID: 8300000, guid: 06b4afef3643dae4f853e70907088a88, type: 3}
     - target: {fileID: 4738056792987244280, guid: edbc8c466f5842e4e896921206612cbf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15
@@ -886,135 +906,6 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 1753068076368932072, guid: 8f728360a27738842803543e9bfedcbe, type: 3}
   m_PrefabInstance: {fileID: 1823137350}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &300488933
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 300488935}
-  - component: {fileID: 300488934}
-  m_Layer: 0
-  m_Name: Audio Source (for short clips)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!82 &300488934
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 300488933}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!4 &300488935
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 300488933}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.54547, y: 0.55, z: 1.57679}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &330935662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2345,9 +2236,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 606837986}
-    - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 606837987}
   m_SourcePrefab: {fileID: 100100000, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
 --- !u!1 &606837985 stripped
 GameObject:
@@ -2381,26 +2269,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &606837987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 606837985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20d508f1fe663d141846ede4ccfe3282, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LogRollingAudio
-  audioSource: {fileID: 300488934}
-  rollingLoop: {fileID: 8300000, guid: 931cc2a0f2e655d44a0a2bdd4d56b8a0, type: 3}
-  baseVolume: 0.15
-  maxVolume: 0.6
-  minSpeedToPlay: 0.5
-  fadeSpeed: 6
-  lavaSurface: {fileID: 0}
-  inLava: 0
 --- !u!4 &684587365 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7539601941222505416, guid: 8f728360a27738842803543e9bfedcbe, type: 3}
@@ -11986,8 +11854,9 @@ MonoBehaviour:
   - {fileID: 1305011322}
   invert: 0
   animState: activated
-  audioSource: {fileID: 300488934}
-  buttonClick: {fileID: 8300000, guid: 9af8089eb9fca9b408959bf2c086f479, type: 3}
+  audioSource: {fileID: 283645616}
+  lever: {fileID: 0}
+  pressurePlate: {fileID: 8300000, guid: d8fe418648c698549aa69a8e595655cb, type: 3}
   doorOpen: {fileID: 8300000, guid: c3ecd88922f0e334f97684ccbb2eeaf6, type: 3}
 --- !u!1 &1086735129
 GameObject:
@@ -13051,9 +12920,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1531378506}
-    - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1531378507}
   m_SourcePrefab: {fileID: 100100000, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
 --- !u!1 &1531378505 stripped
 GameObject:
@@ -13087,26 +12953,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &1531378507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1531378505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20d508f1fe663d141846ede4ccfe3282, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LogRollingAudio
-  audioSource: {fileID: 300488934}
-  rollingLoop: {fileID: 8300000, guid: 931cc2a0f2e655d44a0a2bdd4d56b8a0, type: 3}
-  baseVolume: 0.15
-  maxVolume: 0.6
-  minSpeedToPlay: 0.5
-  fadeSpeed: 6
-  lavaSurface: {fileID: 0}
-  inLava: 0
 --- !u!1001 &1537144059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14155,6 +14001,10 @@ PrefabInstance:
       propertyPath: dialogBox
       value: 
       objectReference: {fileID: 264019068}
+    - target: {fileID: 4779745772493553180, guid: 8f728360a27738842803543e9bfedcbe, type: 3}
+      propertyPath: m_Name
+      value: Audio Source (for short clips)
+      objectReference: {fileID: 0}
     - target: {fileID: 7539601941222505416, guid: 8f728360a27738842803543e9bfedcbe, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.88
@@ -14307,9 +14157,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1845132164}
-    - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1845132165}
   m_SourcePrefab: {fileID: 100100000, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
 --- !u!1 &1845132163 stripped
 GameObject:
@@ -14343,26 +14190,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &1845132165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1845132163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20d508f1fe663d141846ede4ccfe3282, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LogRollingAudio
-  audioSource: {fileID: 300488934}
-  rollingLoop: {fileID: 8300000, guid: 931cc2a0f2e655d44a0a2bdd4d56b8a0, type: 3}
-  baseVolume: 0.15
-  maxVolume: 0.6
-  minSpeedToPlay: 0.5
-  fadeSpeed: 6
-  lavaSurface: {fileID: 0}
-  inLava: 0
 --- !u!1 &1869437170
 GameObject:
   m_ObjectHideFlags: 0
@@ -15195,5 +15022,4 @@ SceneRoots:
   - {fileID: 1129124535}
   - {fileID: 1105643211}
   - {fileID: 1425685967}
-  - {fileID: 300488935}
   - {fileID: 1018044205}
