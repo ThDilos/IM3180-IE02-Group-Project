@@ -20586,6 +20586,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8157121233527359164, guid: 277b797e018e96d4d915e8dce05c1cd1, type: 3}
+      propertyPath: respawnCondition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8157121233527359164, guid: 277b797e018e96d4d915e8dce05c1cd1, type: 3}
       propertyPath: dragDivisionScale
       value: 400
       objectReference: {fileID: 0}
