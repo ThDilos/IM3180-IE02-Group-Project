@@ -1441,6 +1441,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6893879294485781472, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7039696748386160403, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_Sprite
       value: 
