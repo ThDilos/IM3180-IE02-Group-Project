@@ -16,6 +16,7 @@ public class Geiser : MonoBehaviour
     [SerializeField] private LayerMask detectionLayer = 1;
 
     [Header("Geiser Stats")]
+    [SerializeField] private GeiserMode geiserMode;
     [SerializeField] private float pushForce = 10.0f;
     [SerializeField] private ForceMode forceMode = ForceMode.Force;
     [Tooltip("Time between being activated to erupt (In seconds)")]
@@ -54,6 +55,13 @@ public class Geiser : MonoBehaviour
         DEACTIVATED
     }
 
+    private enum GeiserMode
+    {
+        ALWAYSACTIVATAED,
+        DETECTION
+    }
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -69,6 +77,12 @@ public class Geiser : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (geiserMode == GeiserMode.ALWAYSACTIVATAED)
+        {
+            currentState = State.ERUPTING;
+            timer = duration;
+        }
+
         // To be deleted once you think the zone settings are finalized
         activationZoneCenter = transform.position + activationZoneCenterOffset;
         geiserZoneCenter = transform.position + geiserZoneCenterOffset;
