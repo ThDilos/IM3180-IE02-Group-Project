@@ -299,11 +299,13 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public void Respawn()
+    public void Respawn(DialogPopUp.CommonDialog option)
     {
         if (timeSinceRespawn > 0) return;
 
-        dpu.PopUpDialog(DialogPopUp.CommonDialog.WaterWarning);
+        rb.linearVelocity = Vector3.zero;
+
+        dpu.PopUpDialog(option);
         timeSinceRespawn = respawnSafeTime;
         Vector3 targetPos = spawnPoint;
         if (!rewindPosition || softlockTimer > 0)

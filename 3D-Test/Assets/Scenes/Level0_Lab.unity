@@ -8378,6 +8378,8 @@ MonoBehaviour:
   - A switch lies within reach, if you work together to combine your abilities effectively.
   - Fail, and the system will record it as weakness.
   selfWarpLength: 10000
+  activated: 0
+  sceneIndex: -1
 --- !u!4 &771712649
 Transform:
   m_ObjectHideFlags: 0
