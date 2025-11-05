@@ -20,7 +20,9 @@ public class ControlSwitch : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip buttonClick;
+    [SerializeField] private AudioClip lever;
+    [SerializeField] private AudioClip pressurePlateon;
+    [SerializeField] private AudioClip pressurePlateoff;
     [SerializeField] private AudioClip doorOpen;
 
     // Runtime Vars
@@ -47,6 +49,7 @@ public class ControlSwitch : MonoBehaviour
         {
             _prevControlState = Array.Empty<bool>();
         }
+        if (audioSource != null) audioSource.spatialBlend = 0f;
     }
 
     // Update is called once per frame
@@ -70,7 +73,6 @@ public class ControlSwitch : MonoBehaviour
         }
 
         bool anyButtonActivated = false;
-
         for (int i = 0; i < controls.Length; i++)
         {
             var c = controls[i];
@@ -80,7 +82,6 @@ public class ControlSwitch : MonoBehaviour
             if (now && !_prevControlState[i])
             {
                 anyButtonActivated = true;
-                EnqueueSound(buttonClick, 0.7f);
             }
 
             _prevControlState[i] = now;
@@ -88,8 +89,20 @@ public class ControlSwitch : MonoBehaviour
 
         if (activated && !wasActivated)
         {
+            if (lever != null)
+                EnqueueSound(lever, 1f);
+            else if (pressurePlateon != null)
+                EnqueueSound(pressurePlateon, 1f);
             EnqueueSound(doorOpen, 0.5f);
         }
+        //if (activated && wasActivated)
+        //{
+        //    if (lever != null)
+        //        EnqueueSound(lever, 1f);
+        //    else if (pressurePlateoff != null)
+        //        EnqueueSound(pressurePlateoff, 1f);
+        //    EnqueueSound(doorOpen, 0.5f);
+        //}
 
         wasActivated = activated;
 
@@ -105,11 +118,11 @@ public class ControlSwitch : MonoBehaviour
     // Return True when all controls Activated()
     private bool ActivationStatus()
     {
-        if (controls.Length == 0) { return true; }
+        if (controls == null || controls.Length == 0) { return true; }
 
         foreach (Triggerable control in controls)
         {
-            if (!control.Activated()) return false;
+            if (controls == null || !control.Activated()) return false;
         }
 
         return true;
