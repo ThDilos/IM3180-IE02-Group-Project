@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using static DialogPopUp;
+using static Water;
+using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     // Always Accessible as an Instance
@@ -43,15 +46,13 @@ public class GameController : MonoBehaviour
     [SerializeField] private int unlockPotCount;
     [SerializeField] private GameObject[] flowerPots;
 
+    [Header("Cat go OOB for Unlocking")]
+    [SerializeField] public bool catOOB = false;
+
     [Header("Lore Object for Unlocking")]
     [SerializeField] public bool gotLore1 = false;
-    [SerializeField] private GameObject lore1fromPrinter;
-
     [SerializeField] public bool gotLore2 = false;
-    [SerializeField] private GameObject lore2fromPrinter;
-
     [SerializeField] public bool gotLore3 = false;
-    [SerializeField] private GameObject lore3fromPrinter;
 
 
     [Header("Central Components Control")]
@@ -60,6 +61,9 @@ public class GameController : MonoBehaviour
     // Runtime Vars
     public bool isPaused = false;
     private float timeScale;
+
+    //checking how many times player has been in lab
+    private readonly Dictionary<string, int> visitCounts = new Dictionary<string, int>();
 
     private void Awake()
     {
@@ -231,6 +235,22 @@ public class GameController : MonoBehaviour
         }
 
         pushedFlowerPot = true;
+    }
+    public void oob()
+    {
+        catOOB = true;
+        Debug.Log("TRUE");
+    }
+    public int EnterRoom(string roomId)
+    {
+        if (!visitCounts.TryGetValue(roomId, out int count)) count = 0;
+        count++;
+        visitCounts[roomId] = count;
+        return count;
+    }
+    public int GetVisitCount(string roomId)
+    {
+        return visitCounts.TryGetValue(roomId, out int count) ? count : 0;
     }
     public void ObtainLore1()
     {

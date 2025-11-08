@@ -2250,7 +2250,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &744061812612624448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2290,6 +2290,7 @@ MonoBehaviour:
   charButton: {fileID: 7667728717397003763}
   loreButton: {fileID: 6994672011658536389}
   newButton: {fileID: 6603607222386945039}
+  audioSource: {fileID: 0}
   flipPage: {fileID: 8300000, guid: c2baf7b3651e05e4eb54fc4613f8e0e3, type: 3}
   closeBoard: {fileID: 8300000, guid: b85d4eb25f7ae7a4fb2de8f4f8c2c800, type: 3}
 --- !u!81 &2656978608928335964
