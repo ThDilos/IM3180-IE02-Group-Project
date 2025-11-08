@@ -8242,6 +8242,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
   m_PrefabInstance: {fileID: 837780303}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &753900935 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8838317660639886671, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
+  m_PrefabInstance: {fileID: 1906370360}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f79fcb91f9b4541be38f51303a279c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &764691236
 GameObject:
   m_ObjectHideFlags: 0
@@ -20436,6 +20447,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Screen UI Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5622046887640841329, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 330454206}
+    - target: {fileID: 6893879294485781472, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7325749340581373737, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -20544,6 +20563,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8838317660639886671, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1828791151}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22290,6 +22313,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnlockLore
   gameController: {fileID: 330454206}
   dialogTrigger: {fileID: 1781952651}
+  roomId: Lab
+  playerTag: Player
+  reenterCooldown: 0.5
 --- !u!1 &1873641664935348032 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
@@ -22336,6 +22362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 330454206}
+  LabReport: {fileID: 753900935}
   audioSource: {fileID: 1828791151}
   closeBookClip: {fileID: 8300000, guid: b85d4eb25f7ae7a4fb2de8f4f8c2c800, type: 3}
 --- !u!1 &1873641665590449465
