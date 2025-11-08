@@ -1917,7 +1917,7 @@ MonoBehaviour:
   fluidType: 0
   respawnCondition: 1
   submergeHeightScale: 0.8
-  splashClip: {fileID: 0}
+  splashClip: {fileID: 8300000, guid: 76c63dab0736d714fb2b961e989b5582, type: 3}
   pitchRefVel: 5
   velThreshold: 0.5
 --- !u!65 &382955143
