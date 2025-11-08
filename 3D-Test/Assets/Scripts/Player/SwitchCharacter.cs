@@ -85,7 +85,11 @@ public class SwitchCharacter : MonoBehaviour
             character.SetActive(false);
         }
 
-        characterMap[activatedCharacter].SetActive(true);
+        try
+        {
+            characterMap[activatedCharacter].SetActive(true);
+        }
+        catch {  }
 
         movementScript = GetComponent<Movement>();
         movementScript.UpdateStats(activatedCharacter);

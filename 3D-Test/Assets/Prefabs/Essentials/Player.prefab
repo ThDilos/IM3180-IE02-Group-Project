@@ -237,6 +237,14 @@ MonoBehaviour:
     - ...
     gooseLines:
     - You should not see this line.
+  lavaRespawn:
+    catLines: []
+    bearLines: []
+    gooseLines: []
+  oob:
+    catLines: []
+    bearLines: []
+    gooseLines: []
   silly:
     catLines:
     - Mroooow
@@ -450,7 +458,7 @@ GameObject:
   - component: {fileID: 3518722564142679993}
   - component: {fileID: 1753068076368932072}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: SFX Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

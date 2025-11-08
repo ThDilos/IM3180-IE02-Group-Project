@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,10 @@ public class TriggerDialog : MonoBehaviour, IInteractable
     public Texture icon; // The Icon to show
     public List<string> lines; // The Line to display
 
+    [Header("Set an Animation Param to True Upon Destroyed?")]
     public bool destroyAfterInteraction = false;
+    [SerializeField] private Animator animator;
+    [SerializeField] private string animationParam;
 
     [Header("Only who can pickup")]
     [SerializeField] private bool charLimitEnabled = false;
@@ -73,7 +77,7 @@ public class TriggerDialog : MonoBehaviour, IInteractable
         alreadyInteracted = progressiveLine;
         if (destroyAfterInteraction)
         {
-            Destroy(gameObject);
+            StartCoroutine("DestroyObjectWithBear");
         }
     }
 
@@ -115,5 +119,23 @@ public class TriggerDialog : MonoBehaviour, IInteractable
     public string AlternativeText()
     {
         return alternativeFloatingText;
+    }
+
+    IEnumerator DestroyObjectWithBear()
+    {
+        if (GameObject.Find("Player").GetComponent<SwitchCharacter>().activatedCharacter == SwitchCharacter.ActivatedCharacter.BEAR)
+        {
+            GameObject.Find("Player").GetComponent<Animator>().SetTrigger("UsingAbility");
+        }
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (animationParam.Length > 0 && animator != null)
+        {
+            animator.SetBool(animationParam, true);
+        }
     }
 }

@@ -1,13 +1,10 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Build;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class Geiser : MonoBehaviour
 {
     [Header("Geiser Space Setting")]
-    [SerializeField] private float waterFlowHeight = 10.0f;
     [SerializeField] private Vector3 activationZoneCenterOffset = new Vector3(0, 1, 0);
     [SerializeField] private Vector3 activationZoneSize = new Vector3(1, 1, 1);
     [SerializeField] private Vector3 geiserZoneCenterOffset = new Vector3(0, 0.5f, 0);
@@ -25,6 +22,8 @@ public class Geiser : MonoBehaviour
     [SerializeField] private float duration = 2.0f;
     [Tooltip("Time until next eruption is possible, after one has ended.")]
     [SerializeField] private float cooldown = 3.0f;
+    [Header("For Trigger Mode")]
+    [SerializeField] private Triggerable[] triggerables;
 
     [Header("SFX")]
     [SerializeField] private Animator animator;
@@ -58,13 +57,17 @@ public class Geiser : MonoBehaviour
     private enum GeiserMode
     {
         ALWAYSACTIVATAED,
-        DETECTION
+        DETECTION,
+        TRIGGER
     }
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (triggerables.Length == 0 && geiserMode == GeiserMode.TRIGGER)
+            geiserMode = GeiserMode.ALWAYSACTIVATAED;
+
+        animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -77,10 +80,25 @@ public class Geiser : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (timer > 0.0f)
+        {
+            timer -= Time.deltaTime;
+        }
+
         if (geiserMode == GeiserMode.ALWAYSACTIVATAED)
         {
             currentState = State.ERUPTING;
             timer = duration;
+        } else if (geiserMode == GeiserMode.TRIGGER) {
+            foreach (Triggerable t in triggerables)
+            {
+                if (t.Activated())
+                {
+                    currentState = State.ERUPTING;
+                    timer = 0 + Time.fixedDeltaTime;
+                    break;
+                }
+            }
         }
 
         // To be deleted once you think the zone settings are finalized
@@ -88,10 +106,6 @@ public class Geiser : MonoBehaviour
         geiserZoneCenter = transform.position + geiserZoneCenterOffset;
         //
 
-        if (timer > 0.0f)
-        {
-            timer -= Time.deltaTime;
-        }
 
         switch (currentState)
         {
@@ -161,9 +175,12 @@ public class Geiser : MonoBehaviour
     {
         if (animator != null)
         {
-            animator.SetBool(startingAnim, false);
-            animator.SetBool(eruptingAnim, false);
-            animator.SetBool(coolingdownAnim, false);
+            if (startingAnim.Length > 0)
+                animator.SetBool(startingAnim, false);
+            if (eruptingAnim.Length > 0)
+                animator.SetBool(eruptingAnim, false);
+            if (coolingdownAnim.Length > 0)
+                animator.SetBool(coolingdownAnim, false);
         }
         if (state != State.ERUPTING)
         {
@@ -189,7 +206,7 @@ public class Geiser : MonoBehaviour
                         audioSource.Play();
                     }
                 }
-                if (animator != null)
+                if (animator != null && startingAnim.Length > 0)
                 {
                     animator.SetBool(startingAnim, true);
                 }
@@ -210,7 +227,7 @@ public class Geiser : MonoBehaviour
                         audioSource.Play();
                     }
                 }
-                if (animator != null)
+                if (animator != null && eruptingAnim.Length > 0)
                 {
                     animator.SetBool(eruptingAnim, true);
                 }
@@ -224,7 +241,7 @@ public class Geiser : MonoBehaviour
                         audioSource.Play();
                     }
                 }
-                if (animator != null)
+                if (animator != null && coolingdownAnim.Length > 0)
                 {
                     animator.SetBool(coolingdownAnim, true);
                 }

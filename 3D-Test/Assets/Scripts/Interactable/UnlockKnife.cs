@@ -8,6 +8,7 @@ public class UnlockKnife : MonoBehaviour
     private void OnDestroy()
     {
         gameController.ObtainKnife();
+        if (audioSource == null) return;
         audioSource.PlayOneShot(knife, 1.3f);
     }
 }

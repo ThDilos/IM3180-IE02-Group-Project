@@ -83,6 +83,7 @@ public class DialogBox : MonoBehaviour
             Texture placeholder;
             SwitchCharacter sc = GameObject.Find("Player").GetComponent<SwitchCharacter>();
             DialogPopUp dpu = GameObject.Find("Player").GetComponent<DialogPopUp>();
+            if (sc == null) return;
             switch (sc.activatedCharacter)
             {
                 case SwitchCharacter.ActivatedCharacter.CAT:

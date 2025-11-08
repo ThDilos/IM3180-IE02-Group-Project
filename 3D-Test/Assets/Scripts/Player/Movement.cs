@@ -182,7 +182,6 @@ public class Movement : MonoBehaviour
     {
         if (CanJump())
         {
-            
             rb.AddForce(Vector3.up * rb.mass * force, ForceMode.Impulse);
             grounded = false;
             if (sc.activatedCharacter == SwitchCharacter.ActivatedCharacter.CAT)
@@ -254,11 +253,23 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void ClassMechanicsBear() { }
+    private void ClassMechanicsBear() 
+    {
+        if (animator.GetBool("UsingAbility"))
+        {
+            StartCoroutine("StopAnim");
+        }
+    }
+
+    IEnumerator StopAnim()
+    {
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("UsingAbility", false);
+    }
 
     private void ClassMechanicsCat()
     {
-        if (grounded)
+        if (grounded && rb.linearVelocity.y <= 0.1)
         {
             animator.SetBool("UsingAbility", false);
         }

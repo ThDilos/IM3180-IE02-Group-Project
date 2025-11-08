@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(BoxCollider))]
 public class Water : MonoBehaviour
@@ -151,6 +150,7 @@ public class Water : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
+        if (splashClip == null) return;
         Rigidbody rb = null;
         float pitch = 0f;
         if (collider.transform.GetComponentInParent<Rigidbody>() == null)

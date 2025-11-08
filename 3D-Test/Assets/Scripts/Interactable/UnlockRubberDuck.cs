@@ -8,6 +8,7 @@ public class UnlockRubberDuck : MonoBehaviour
     private void OnDestroy()
     {
         gameController.ObtainRubberDuck();
+        if (audioSource == null) return;
         audioSource.PlayOneShot(rubberDuckCLip);
     }
 }

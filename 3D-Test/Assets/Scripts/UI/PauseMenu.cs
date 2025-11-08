@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject settingPanel;
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private Slider bgmSlider;
+    [SerializeField] private AudioSource bgmSource;
 
     // Runtime Vars
     private GameController gc;
@@ -24,7 +26,10 @@ public class PauseMenu : MonoBehaviour
         togglePauseMenu = map.FindAction("Pause");
         settingPanel.SetActive(gamePaused);
 
-        sfxSource.volume = sfxSlider.value;
+        if (sfxSlider != null && sfxSource != null)
+            sfxSource.volume = sfxSlider.value;
+        if (bgmSlider != null && bgmSource != null)
+            bgmSource.volume = bgmSlider.value;
     }
 
     void Update()
@@ -33,8 +38,10 @@ public class PauseMenu : MonoBehaviour
         {
             TogglePauseMenu();
         }
-
-        sfxSlider.onValueChanged.AddListener(delegate { sfxSource.volume = sfxSlider.value; PlayerPrefs.SetFloat("SFX_Volume", sfxSlider.value); });
+        if (sfxSlider != null && sfxSource != null)
+            sfxSlider.onValueChanged.AddListener(delegate { sfxSource.volume = sfxSlider.value; PlayerPrefs.SetFloat("SFX_Volume", sfxSlider.value); });
+        if (bgmSlider != null && bgmSource != null) 
+            bgmSlider.onValueChanged.AddListener(delegate { bgmSource.volume = bgmSlider.value; PlayerPrefs.SetFloat("BGM_Volume", bgmSlider.value); });
     }
 
     public void Quitgame()
