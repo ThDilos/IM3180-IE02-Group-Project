@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class loreNotes : MonoBehaviour
 {
@@ -52,6 +53,10 @@ public class loreNotes : MonoBehaviour
         {
             showlore.transform.SetAsFirstSibling();
             showlore.SetActive(false);
+            if (shownLore3)
+            {
+                SceneManager.LoadScene("Ending Dialogue");
+            }
         }
     }
     public void openlore1()
