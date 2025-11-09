@@ -42145,6 +42145,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
+    - target: {fileID: 2126879284589676874, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 079de8b86ad655544b5bb4fd1b118f7b, type: 2}
     - target: {fileID: 6996850111332550394, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
       propertyPath: m_Enabled
       value: 0
