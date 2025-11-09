@@ -94,6 +94,7 @@ public class TriggerDialog : MonoBehaviour, IInteractable
 
     public bool Condition()
     {
+        Debug.Log(!dialogBox.activeSelf + " and (" + !charLimitEnabled + " or " + (charLimitEnabled && GameObject.Find("Player").GetComponent<SwitchCharacter>().activatedCharacter == characterLimit) + ")");
             return !dialogBox.activeSelf && (!charLimitEnabled ||
             (charLimitEnabled && GameObject.Find("Player").GetComponent<SwitchCharacter>().activatedCharacter == characterLimit));
     }

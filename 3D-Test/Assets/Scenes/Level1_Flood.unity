@@ -3307,6 +3307,14 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 1890527381}
+    - target: {fileID: 5622046887640841329, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
+      propertyPath: badges.Array.data[2].unlocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5622046887640841329, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
+      propertyPath: badges.Array.data[3].unlocked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6893879294485781472, guid: e57d11b092a0dac4f9ca77dcbd042839, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0

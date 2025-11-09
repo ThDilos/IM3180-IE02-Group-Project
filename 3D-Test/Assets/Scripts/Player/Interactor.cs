@@ -42,8 +42,17 @@ public class Interactor : MonoBehaviour
         var sortedColliders = hitColliders.OrderBy(item => Vector3.Distance(item.transform.position, transform.position));
         foreach (var collider in sortedColliders)
         {
+            IInteractable interactObj = null;
+            if (collider.gameObject.TryGetComponent(out IInteractable temp)) {
+                interactObj = temp;
+            }
+            else if (collider.gameObject.GetComponentInParent<IInteractable>() != null)
+            {
+                interactObj = collider.gameObject.GetComponentInParent<IInteractable>();
+            }
+
             // Show Interaction Text
-            if (collider.gameObject.TryGetComponent(out IInteractable interactObj) && interactObj.Condition())
+            if (interactObj != null && interactObj.Condition())
             {
                 string altText = interactObj.AlternativeText();
                 if (altText != null) floatingText.text = "[" + key + "]\n" + altText;
@@ -66,8 +75,18 @@ public class Interactor : MonoBehaviour
             sortedColliders = hitColliders.OrderBy(item => Vector3.Distance(item.transform.position, transform.position));
             foreach (var collider in sortedColliders)
             {
+                IInteractable interactObj = null;
+                if (collider.gameObject.TryGetComponent(out IInteractable temp))
+                {
+                    interactObj = temp;
+                }
+                else if (collider.gameObject.GetComponentInParent<IInteractable>() != null)
+                {
+                    interactObj = collider.gameObject.GetComponentInParent<IInteractable>();
+                }
+
                 // If it's interactable, interact with nearest interactable object
-                if (collider.gameObject.TryGetComponent(out IInteractable interactObj))
+                if (interactObj != null)
                 {
                     if (interactObj.Condition()) // Also check for whether its condition is met (Condition can be whether you are in the setted interaction range, item you are carrying etc. depending on individual Interactables)
                     {
