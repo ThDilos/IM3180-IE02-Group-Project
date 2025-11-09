@@ -11256,6 +11256,8 @@ MonoBehaviour:
   lines:
   - (You Picked up a knife)
   destroyAfterInteraction: 1
+  animator: {fileID: 0}
+  animationParam: 
   charLimitEnabled: 1
   characterLimit: 0
   progressiveLine: 0
@@ -17684,6 +17686,8 @@ MonoBehaviour:
   lines:
   - (You Picked up a book)
   destroyAfterInteraction: 1
+  animator: {fileID: 0}
+  animationParam: 
   charLimitEnabled: 0
   characterLimit: 0
   progressiveLine: 0
@@ -18358,6 +18362,14 @@ PrefabInstance:
       objectReference: {fileID: -944628639613478452, guid: e17998b51c5033b4b83ed667400a18fe, type: 3}
     - target: {fileID: 2914947966897703091, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
       propertyPath: openReportButton
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2914947966897703091, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
+      propertyPath: storyOrder.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2914947966897703091, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
+      propertyPath: 'storyOrder.Array.data[0]'
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4306376830965113119, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
@@ -19118,6 +19130,8 @@ MonoBehaviour:
   lines:
   - Printer
   destroyAfterInteraction: 0
+  animator: {fileID: 0}
+  animationParam: 
   charLimitEnabled: 0
   characterLimit: 0
   progressiveLine: 1
@@ -19238,6 +19252,8 @@ MonoBehaviour:
   - This is line 2
   - Ok bye
   destroyAfterInteraction: 0
+  animator: {fileID: 0}
+  animationParam: 
   charLimitEnabled: 0
   characterLimit: 0
   progressiveLine: 1

@@ -2471,6 +2471,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7734942000020806276, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734942000020806276, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734942000020806276, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734942000020806276, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734942000020806276, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1127.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734942000020806276, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 607.6
+      objectReference: {fileID: 0}
     - target: {fileID: 8044551334274481257, guid: 3fabac3bbf0f6e845815a355571a99fe, type: 3}
       propertyPath: m_Sprite
       value: 

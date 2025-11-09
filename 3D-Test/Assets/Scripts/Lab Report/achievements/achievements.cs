@@ -24,20 +24,31 @@ public class Achievements : MonoBehaviour
 
     [SerializeField] private GameController gameController;
 
+    public static bool gotKnife = false;
+    public static bool gotRubberDuck = false;
+    public static bool pushedFlowerPot = false;
+    public static bool catOOB = false;
+
     private void Start()
     {
         // start with none visible
         foreach (var badge in badges)
             badge.unlocked = false;
+
+        // if collected in prev scene
+        if (gotKnife) UnlockBadge("knife");
+        if (gotRubberDuck) UnlockBadge("rubberDuck");
+        if (pushedFlowerPot) UnlockBadge("flowerPot");
+        if (catOOB) UnlockBadge("oob");
     }
 
     private void Update()
     {
         // Check each condition once
-        if (gameController.gotKnife) UnlockBadge("knife");
-        if (gameController.gotRubberDuck) UnlockBadge("rubberDuck");
-        if (gameController.pushedFlowerPot) UnlockBadge("flowerPot");
-        if (gameController.catOOB) UnlockBadge("oob");
+        if (gameController.gotKnife) { UnlockBadge("knife"); gotKnife = true; }
+        if (gameController.gotRubberDuck) { UnlockBadge("rubberDuck"); gotRubberDuck = true; }
+        if (gameController.pushedFlowerPot) { UnlockBadge("flowerPot"); pushedFlowerPot = true; }
+        if (gameController.catOOB) { UnlockBadge("oob"); catOOB = true; }
     }
 
     private void UnlockBadge(string badgeName)

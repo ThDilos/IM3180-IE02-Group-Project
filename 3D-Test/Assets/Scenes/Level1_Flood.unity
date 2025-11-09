@@ -43122,6 +43122,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1172292727}
+    - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1172292730}
   m_SourcePrefab: {fileID: 100100000, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
 --- !u!4 &1083126167 stripped
 Transform:
@@ -43925,6 +43928,21 @@ MonoBehaviour:
   autoCloseMeansCompletedTheWholeDialog: 0
   alternativeFloatingText: Destroy
   yOffsetUp: 0.5
+--- !u!114 &1172292730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172292722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0701473f558d341be539761b11c665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectKey
+  dialogTrigger: {fileID: 1172292727}
+  audioSource: {fileID: 1828791151}
+  keyPickUp: {fileID: 8300000, guid: 05ce56b57fbe20d4bbc80259b60f6b6d, type: 3}
 --- !u!1001 &1207640922
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44329,6 +44347,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1247767652}
+    - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1247767655}
   m_SourcePrefab: {fileID: 100100000, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
 --- !u!4 &1247767650 stripped
 Transform:
@@ -44369,6 +44390,21 @@ MonoBehaviour:
   autoCloseMeansCompletedTheWholeDialog: 0
   alternativeFloatingText: 
   yOffsetUp: 0.5
+--- !u!114 &1247767655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247767651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a71a11567f4ad48ad15f8e9ed90f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnlockFlowerPot
+  gameController: {fileID: 1890527381}
+  audioSource: {fileID: 1828791151}
+  potBreakingClip: {fileID: 8300000, guid: 76c63dab0736d714fb2b961e989b5582, type: 3}
 --- !u!1 &1252189145
 GameObject:
   m_ObjectHideFlags: 0
@@ -45176,6 +45212,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1323963159}
+    - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1323963162}
   m_SourcePrefab: {fileID: 100100000, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
 --- !u!4 &1323963157 stripped
 Transform:
@@ -45216,6 +45255,21 @@ MonoBehaviour:
   autoCloseMeansCompletedTheWholeDialog: 0
   alternativeFloatingText: 
   yOffsetUp: 0.5
+--- !u!114 &1323963162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323963158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a71a11567f4ad48ad15f8e9ed90f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnlockFlowerPot
+  gameController: {fileID: 1890527381}
+  audioSource: {fileID: 1828791151}
+  potBreakingClip: {fileID: 8300000, guid: 76c63dab0736d714fb2b961e989b5582, type: 3}
 --- !u!1001 &1331875531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50605,6 +50659,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2034469005}
+    - targetCorrespondingSourceObject: {fileID: 1873641665586784286, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2034469008}
   m_SourcePrefab: {fileID: 100100000, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
 --- !u!4 &2034469003 stripped
 Transform:
@@ -50645,6 +50702,21 @@ MonoBehaviour:
   autoCloseMeansCompletedTheWholeDialog: 0
   alternativeFloatingText: 
   yOffsetUp: 0.5
+--- !u!114 &2034469008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034469004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a71a11567f4ad48ad15f8e9ed90f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnlockFlowerPot
+  gameController: {fileID: 1890527381}
+  audioSource: {fileID: 1828791151}
+  potBreakingClip: {fileID: 8300000, guid: 76c63dab0736d714fb2b961e989b5582, type: 3}
 --- !u!1001 &2086857229
 PrefabInstance:
   m_ObjectHideFlags: 0

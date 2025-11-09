@@ -14,9 +14,9 @@ public class loreNotes : MonoBehaviour
 
     private GameController gameController;
 
-    bool shownLore1 = false;
-    bool shownLore2 = false;
-    bool shownLore3 = false;
+    public static bool shownLore1 = false;
+    public static bool shownLore2 = false;
+    public static bool shownLore3 = false;
 
     void Start()
     {
@@ -37,6 +37,10 @@ public class loreNotes : MonoBehaviour
         lore1Button.onClick.AddListener(openlore1);
         lore2Button.onClick.AddListener(openlore2);
         lore3Button.onClick.AddListener(openlore3);
+
+        if (shownLore1) { lore1Button.gameObject.SetActive(true); }
+        if (shownLore2) { lore2Button.gameObject.SetActive(true); }
+        if (shownLore3) { lore3Button.gameObject.SetActive(true); }
     }
     void Update()
     {
