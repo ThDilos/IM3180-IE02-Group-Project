@@ -14431,6 +14431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2c09d9908e89914899aba4febc36f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoToNextScene
+  nextSceneNumber: 2
 --- !u!1001 &1799394819
 PrefabInstance:
   m_ObjectHideFlags: 0

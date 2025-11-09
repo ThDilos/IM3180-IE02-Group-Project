@@ -18357,6 +18357,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1873641665564025137}
     - target: {fileID: 2914947966897703091, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
+      propertyPath: timesInLab
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2914947966897703091, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
       propertyPath: inputActions
       value: 
       objectReference: {fileID: -944628639613478452, guid: e17998b51c5033b4b83ed667400a18fe, type: 3}
@@ -19128,7 +19132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   lines:
-  - Printer
+  - (...)
   destroyAfterInteraction: 0
   animator: {fileID: 0}
   animationParam: 
@@ -19136,7 +19140,7 @@ MonoBehaviour:
   characterLimit: 0
   progressiveLine: 1
   repeatedLines:
-  - 
+  - (There is nothing more)
   interacting: 0
   selfWarpLength: 130
   autoClose: 1
@@ -19248,9 +19252,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   lines:
-  - Opened Computer. The text can be images later
-  - This is line 2
-  - Ok bye
+  - (This computer is still on, looks like someone left in a hurry)
+  - '"Check the printer" scribbly written on a sticky note?'
   destroyAfterInteraction: 0
   animator: {fileID: 0}
   animationParam: 
@@ -20775,6 +20778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2c09d9908e89914899aba4febc36f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
+  nextSceneNumber: -1
 --- !u!1001 &1950973819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22427,7 +22431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db1b4c2a2f16e004b9c935b3740d5384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnlockLore
-  gameController: {fileID: 330454206}
   dialogTrigger: {fileID: 1781952651}
   roomId: Lab
   playerTag: Player

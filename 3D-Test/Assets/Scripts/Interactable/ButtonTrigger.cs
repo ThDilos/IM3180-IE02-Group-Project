@@ -9,6 +9,8 @@ public class ButtonTrigger : Triggerable, IInteractable
 {
     [Header("How long would this interactible remain triggered?")]
     [SerializeField] private float buttonDuration;
+    public bool activated = false;
+
     [Header("Animator Variable for Trigger / Boolean")]
     [SerializeField] string animVar = "";
 
@@ -22,7 +24,6 @@ public class ButtonTrigger : Triggerable, IInteractable
 
     // Runtime var
     Animator animator;
-    private bool activated = false;
     private Renderer render;
     private Color idleColor;
     private Coroutine buttonCoroutine;

@@ -3,7 +3,6 @@ using System.Collections;
 
 public class UnlockLore : MonoBehaviour
 {
-    [SerializeField] private GameController gameController;
     [SerializeField] private TriggerDialog dialogTrigger;
 
     [Header("Times Player has been in Lab")]
@@ -15,6 +14,12 @@ public class UnlockLore : MonoBehaviour
 
     // latches so each visit’s reward happens once only
     private bool gaveLore1, gaveLore2, gaveLore3;
+    private GameController gameController;
+
+    private void Start()
+    {
+        gameController = GameController.Instance;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,7 +27,8 @@ public class UnlockLore : MonoBehaviour
         if (Time.time - lastEnterTime < reenterCooldown) return; // debounce quick re-entries
         lastEnterTime = Time.time;
 
-        int visit = gameController.EnterRoom(roomId);
+        //int visit = gameController.EnterRoom(roomId);
+        int visit = gameController.timesInLab;
 
         switch (visit)
         {

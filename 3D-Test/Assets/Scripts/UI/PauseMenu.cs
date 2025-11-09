@@ -54,6 +54,8 @@ public class PauseMenu : MonoBehaviour
     {
         // Reload Current Scene
         gc.ResumeGame();
+        if (SceneManager.GetActiveScene().buildIndex == gc.labSceneIndex)
+            gc.timesInLab--;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

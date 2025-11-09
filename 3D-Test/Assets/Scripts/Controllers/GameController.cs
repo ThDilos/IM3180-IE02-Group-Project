@@ -65,6 +65,10 @@ public class GameController : MonoBehaviour
     //checking how many times player has been in lab
     private readonly Dictionary<string, int> visitCounts = new Dictionary<string, int>();
 
+    // Alternative Room Tracking
+    public int labSceneIndex = 2;
+    public int timesInLab = 0;
+
     private void Awake()
     {
         // If there's already one instance, destroy the new one
@@ -88,6 +92,28 @@ public class GameController : MonoBehaviour
         ;
         QualitySettings.vSyncCount = 0; // Set vSyncCount to 0 so that using .targetFrameRate is enabled.
         Application.targetFrameRate = frameRate; // Default fps is set to 60, so that your GPU won't scream eve
+
+        SceneManager.activeSceneChanged += SceneChanged;
+    }
+
+    private void SceneChanged(Scene current, Scene next)
+    {
+        if (next.buildIndex == labSceneIndex)
+        {
+            timesInLab++;
+            if (timesInLab > 1)
+            {
+                SetUpLab(timesInLab);
+            }
+        }
+    }
+
+    private void SetUpLab(int times)
+    {
+        Destroy(GameObject.Find("Tutorial"));
+        Destroy(GameObject.Find("Lab Report"));
+        GameObject.Find("Switch").GetComponent<ButtonTrigger>().activated = true;
+        GameObject.Find("Collider Door").GetComponent<GoToNextScene>().nextSceneNumber = labSceneIndex + times;
     }
 
     public void Respawn()
@@ -105,6 +131,10 @@ public class GameController : MonoBehaviour
         if (debugMode)
         {
             handleDebug();
+            if (Input.GetKeyDown(KeyCode.Backspace))
+            {
+                GameObject.Find("Collider Door").GetComponent<GoToNextScene>().NextScene();
+            }
         }
         if (debugLogs == null)
         {

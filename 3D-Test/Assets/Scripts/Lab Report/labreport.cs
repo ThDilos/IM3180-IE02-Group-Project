@@ -50,7 +50,7 @@ public class labreport : MonoBehaviour
     void Update()
     {
         // Check if the F key is pressed to toggle the pause menu
-        if (labReportAction.WasPerformedThisFrame())
+        if (labReportAction.WasPerformedThisFrame() && GameController.Instance.gotLabReport)
         {
             openReport();
         }
