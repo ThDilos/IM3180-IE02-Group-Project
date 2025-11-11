@@ -1905,7 +1905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2797028b155468c44806f19f3835850c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Water
-  detectionSizeToColliderSize: 0.8
+  detectionSizeToColliderSize: 1
   liquidDensity: 1000
   flowVelocity: {x: 0, y: 0, z: 0}
   buoyancyDivisionScale: 80
@@ -45700,6 +45700,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2126879284589676874, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 079de8b86ad655544b5bb4fd1b118f7b, type: 2}
     - target: {fileID: 3463986120987656919, guid: 3231f757cf52838448ebb8b0308cc9c7, type: 3}
       propertyPath: m_LocalScale.y
       value: 1.5
@@ -47905,6 +47909,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2914947966897703091, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
+      propertyPath: timesInLab
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2914947966897703091, guid: fa3b669ad2198fd49bc48f8fb0ba206a, type: 3}
       propertyPath: gotLabReport
       value: 1
       objectReference: {fileID: 0}
@@ -48949,6 +48957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoToNextScene
   nextSceneNumber: 2
+  setGameControllerTimesInLabTo: -1
 --- !u!1 &1828791150
 GameObject:
   m_ObjectHideFlags: 0

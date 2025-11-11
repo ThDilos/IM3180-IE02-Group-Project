@@ -5,6 +5,7 @@ public class GoToNextScene : MonoBehaviour
 {
     [Header("If = -1, go to the next scene in sequence")]
     [SerializeField] public int nextSceneNumber = -1;
+    [SerializeField] private int setGameControllerTimesInLabTo = -1; // Manually fix
     private void OnTriggerEnter(Collider other) 
     { 
         if (other.CompareTag("Player")) 
@@ -20,7 +21,7 @@ public class GoToNextScene : MonoBehaviour
             SceneManager.LoadScene(nextSceneNumber);
             return;
         }
-
+        GameController.Instance.timesInLab = (setGameControllerTimesInLabTo > -1) ? setGameControllerTimesInLabTo : GameController.Instance.timesInLab;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
