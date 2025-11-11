@@ -75,6 +75,7 @@ public class GameController : MonoBehaviour
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
+            Debug.Log("Duplicated GameController Destroyed!");
             return;
         }
 
@@ -105,7 +106,10 @@ public class GameController : MonoBehaviour
             {
                 SetUpLab(timesInLab);
             }
-        }
+        } else if (next.buildIndex == 0)
+            Destroy(gameObject);
+
+        Debug.Log(timesInLab);
     }
 
     private void SetUpLab(int times)
@@ -114,6 +118,7 @@ public class GameController : MonoBehaviour
         Destroy(GameObject.Find("Lab Report"));
         GameObject.Find("Switch").GetComponent<ButtonTrigger>().activated = true;
         GameObject.Find("Collider Door").GetComponent<GoToNextScene>().nextSceneNumber = labSceneIndex + times;
+        GameObject.Find("Knife").transform.position = new Vector3(0, -50, 0); // Shift the knife away
     }
 
     public void Respawn()
@@ -214,7 +219,7 @@ public class GameController : MonoBehaviour
 
     public void DelayedSpawnObject(Vector3 pos, Quaternion rot, GameObject obj, float delay)
     {
-        StartCoroutine(SpawnObj(pos, rot, obj, delay));
+        //StartCoroutine(SpawnObj(pos, rot, obj, delay));
     }
 
     IEnumerator SpawnObj(Vector3 pos, Quaternion rot, GameObject obj, float delay)

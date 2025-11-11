@@ -20779,6 +20779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   nextSceneNumber: -1
+  setGameControllerTimesInLabTo: -1
 --- !u!1001 &1950973819
 PrefabInstance:
   m_ObjectHideFlags: 0

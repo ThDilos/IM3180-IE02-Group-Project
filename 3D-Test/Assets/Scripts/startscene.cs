@@ -5,8 +5,9 @@ public class startscene : MonoBehaviour
 {
     public void StartGame()
     {
+        if (GameController.Instance != null)
+            Destroy(GameController.Instance.gameObject); // Refresh GameController
         SceneManager.LoadScene("Intro Cutscene");
-        Destroy(GameController.Instance); // Refresh GameController
     }
     void Start()
     {
